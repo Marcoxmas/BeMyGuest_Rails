@@ -1,0 +1,195 @@
+<nav class="navbar sticky-top navbar-default transparent" id="navbar">
+        <a class="navbar-brand" href="#">
+            <%= image_tag ("loghi/logo 3.png"), class:"logo" %>
+        </a>
+        <div class="col-md-4">
+            <form class="form-inline" action="php/lista_case.php" method="POST">
+                <div class="input-group hidden" id="barra-ricerca">
+                    <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
+                        aria-label="Search" autocomplete="off" id="ricerca" name="citta">
+                    <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
+                        <%= image_tag ("loghi/search.svg"), class:"con-icona" %>
+                    </button>
+                </div>
+            </form>
+            <div class="suggerimenti" id="card-suggerimenti">
+
+            </div>
+        </div>
+        <div class="login-button-container" id="bottone-login">
+            <% if user_signed_in? %>
+            
+            <button class="btn login-button margine-10">
+            <a class="link-light link-underline-opacity-100-hover link-underline-opacity-0" href="#">Visualizza le tue case</a>
+            </button>
+            <button class="btn login-button margine-10">
+            <a class="link-light link-underline-opacity-100-hover link-underline-opacity-0" href="#">Aggiungi la tua casa</a>
+            </button>
+            <button class="btn btn-danger margine-10">
+            <%= link_to 'Log Out', destroy_user_session_path, data: { "turbo-method": :delete }, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+            </button>
+            
+            <% else %>
+            <button class="btn login-button">
+                <%= link_to 'Log In', new_user_session_path, :method => :get, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0"%>
+            </button>
+            <% end %>
+        </div>
+    </nav>
+
+    <div class="container-immagine" id="immagine-home">
+        <div class="container-nome" id="nome">
+        <% if user_signed_in? %>
+        <h1 class="titolo-bello">Ciao <%= current_user.name%></h1>
+        <% end %>
+        </div>
+        <h1 id="titolo-immagine">Your home away from home</h1>
+        <div class="col-md-4">
+            <form class="form-inline" action="php/lista_case.php" method="POST">
+                <div class="input-group" id="barra-ricerca2">
+                    <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
+                        aria-label="Search" autocomplete="off" id="ricerca2" name="citta">
+                    <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
+                        <%= image_tag ("loghi/search.svg"), class:"con-icona" %>
+                    </button>
+                </div>
+            </form>
+            <div class="suggerimenti" id="card-suggerimenti2">
+
+            </div>
+        </div>
+    </div>
+
+    <div class=" container" id="come-funziona">
+        <div class="row">
+            <div class="col-md-12">
+                <header class="header">
+                    <h1>Come Funziona?</h1>
+                </header>
+                <div class="steps row">
+                    <div class="step col-md-4">
+                        <div class="step-contenuto">
+                            <span class="numero-step">1</span>
+                            <%= image_tag ("loghi/iscriviti.png"), class:"step-immagine" %>
+                            <p>Iscriviti</p>
+                        </div>
+                    </div>
+                    <div class="step col-md-4">
+                        <div class="step-contenuto">
+                            <span class="numero-step">2</span>
+                            <%= image_tag ("loghi/completa.png"), class:"step-immagine" %>
+                            <p>Completa il tuo profilo</p>
+                        </div>
+                    </div>
+                    <div class="step col-md-4">
+                        <div class="step-contenuto">
+                            <span class="numero-step">3</span>
+                            <%= image_tag ("loghi/primoscambio.png"), class:"step-immagine" %>
+                            <p>Trova il tuo primo scambio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="iscriviti-bottone-container" id="bottone-iscriviti">
+            <% if !user_signed_in? %>
+            <button class="btn iscriviti-bottone">
+            <%= link_to "Sign up", new_user_registration_path, class:"link-dark link-underline-opacity-0" %>
+            </button>
+            <% end %>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <header class="header">
+                    <h1>Scopri tutte le nostre destinazioni</h1>
+                </header>
+                <div class="destinazioni">
+                    <div class="row">
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=Parigi">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/fotoparigi.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/parigiscritta.png'%>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=Berlino">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/fotoberlino.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/berlinoscritta.png' %>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=Londra">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/fotolondra.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/londrascritta.png' %>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=Los%20Angeles">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/fotolosangeles.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/losangelesscritta.png' %>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=Milano">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/fotomilano.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/milanoscritta.png' %>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=New%20York">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/fotonewyork.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/newyorkscritta.png' %>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=Roma">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/fotoroma.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/romascritta.png' %>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="destinazione col-lg-3">
+                            <a href="/php/lista_case.php?citta=Lisbona">
+                                <div class="immagine-destinazione"
+                                    style="background-image: url(<%= asset_path 'immagini-città/Lisbona.jpeg' %>);">
+                                    <div class="scritta-interna"
+                                        style="background-image: url(<%= asset_path 'scritte-città/lisbonascritta.png' %>);">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%= javascript_include_tag 'suggerimenti' %>

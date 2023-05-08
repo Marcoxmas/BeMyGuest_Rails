@@ -1,0 +1,395 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+* {
+    font-family: 'Kanit', sans-serif;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+}
+
+.transparent {
+    background: transparent;
+    background-color: transparent !important;
+}
+
+#come-funziona {
+    padding-bottom: 25px;
+}
+
+.header {
+    margin-bottom: 15px;
+    font-weight: bolder;
+}
+
+.ricerca {
+    --bs-border-color: #448add;
+}
+
+.bottone-ricerca {
+    width: 50px;
+    background-color: white;
+}
+
+.iscriviti-bottone-container {
+    margin-top: 30px;
+}
+
+.iscriviti-bottone {
+    --bs-btn-color: #448add;
+    --bs-btn-border-color: #448add;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #448add;
+    --bs-btn-hover-border-color: #448add;
+    --bs-btn-focus-shadow-rgb: 25, 135, 84;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #448add;
+    --bs-btn-active-border-color: #448add;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #448add;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #448add;
+    --bs-gradient: none
+}
+
+.con-icona {
+    padding-right: 25px;
+    /* background: url(../images/loghi/search.svg) no-repeat right; */
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 20px;
+    width: 50px;
+}
+
+.navbar {
+    background-color: white;
+}
+
+.navbar-brand {
+    margin-left: 15px;
+}
+
+.logo {
+    background-image: url(loghi/logo\ 3.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 40px;
+}
+
+.login-button-container {
+    margin-right: 15px;
+}
+
+.login-button {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #448add;
+    --bs-btn-border-color: #448add;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #448add;
+    --bs-btn-hover-border-color: #448add;
+    --bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #448add;
+    --bs-btn-active-border-color: #448add;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #448add;
+    --bs-btn-disabled-border-color: #448add
+}
+
+.titolo-bello {
+    color: #448add;
+    font-weight: bold;
+}
+
+.margine-10 {
+    margin-right: 10px;
+}
+
+.suggerimenti {
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: inherit;
+    max-height: 50vh;
+    overflow: scroll;
+}
+
+.suggerimento:hover {
+    background-color: #448add;
+    transition: ease 0.5s;
+}
+
+.container {
+    display: block;
+    text-align: center;
+    align-items: center;
+    min-height: 500px;
+}
+
+.container-immagine {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    min-height: 700px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    margin-bottom: 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(sfondo.jpg);
+    /* filter: brightness(50%); */
+}
+
+.container-immagine h1,
+.container-immagine p {
+    color: white;
+}
+
+.steps {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding-top: 15px;
+}
+
+.step {
+    height: fit-content;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    align-items: center;
+}
+
+.numero-step {
+    margin-top: 10px;
+    border: 1px solid #191d1f;
+    width: 30px;
+    border-radius: 30px;
+    font-size: 20px;
+}
+
+.step-contenuto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+.step-immagine {
+    height: auto;
+    max-height: 140px;
+    max-width: fit-content;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.destinazione .immagine-destinazione {
+    height: auto;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin: 10px;
+}
+
+.scritta-interna {
+    padding-top: 100%;
+    background-size: 0;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    display: flex;
+}
+
+.scritta-interna:hover {
+    background-size: 270%;
+}
+
+
+.immagine-destinazione {
+    margin: 10px;
+}
+
+.container-login {
+    margin-bottom: auto;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    margin-top: 5%;
+    margin-bottom: auto;
+    margin-right: 20%;
+    margin-left: 20%;
+    padding: 1%;
+    border-radius: 20px;
+    border: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.login-form-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.background {
+    background-image: url(sfondo-login.jpg);
+    background-position: bottom;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.login-immagine {
+    margin-bottom: 20px;
+    max-width: fit-content;
+    height: auto;
+}
+
+.container-registrazione {
+    text-align: left;
+}
+
+.container-form {
+    text-align: left;
+    margin-bottom: 30px;
+    min-height: 0;
+}
+
+.opzione {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease, color .3s ease;
+}
+
+.checkbox-opzione:checked+.opzione {
+    border-color: #448add;
+    color: #448add;
+}
+
+.checkbox-opzione {
+    left: -999px;
+    visibility: hidden;
+}
+
+.icona-check {
+    width: 100%;
+    height: auto;
+    display: flex;
+    max-width: 96px;
+}
+
+.scritta-icona {
+    min-height: fit-content;
+    font-size: large;
+    word-break: break-all;
+}
+
+.input-number-btn {
+    background-color: transparent;
+    margin-top: 10px;
+    border: 1px solid #191d1f;
+    width: 30px;
+    border-radius: 30px;
+    font-size: 20px;
+}
+
+.label-contatore {
+    margin-left: 5px;
+}
+
+.areatesto:focus {
+    border-color: #448add;
+}
+
+.form-casa-immagine {
+    height: 100px;
+}
+
+.container-carosello {
+    min-height: 900px;
+
+}
+
+.disposizione-tasti {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: fit-content;
+    flex-wrap: wrap;
+}
+
+.immagine-card {
+    width: auto;
+    height: 50%;
+}
+
+.carousel .carousel-item {
+    height: 50vh;
+}
+
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
