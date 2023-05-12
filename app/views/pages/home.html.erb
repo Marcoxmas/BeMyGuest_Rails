@@ -17,6 +17,9 @@
             </div>
         </div>
         <div class="login-button-container" id="bottone-login">
+            <button class="btn login-button margine-10">
+            <%= link_to "Houses", houses_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+            </button>
             <% if user_signed_in? %>
             
             <button class="btn login-button margine-10">

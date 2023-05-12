@@ -1,0 +1,111 @@
+<%= form_with(model: house) do |form| %>
+  <% if house.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>
+
+      <ul>
+        <% house.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :tipologia, style: "display: block" %>
+    <%= form.text_field :tipologia %>
+  </div>
+
+  <div>
+    <%= form.label :superficie, style: "display: block" %>
+    <%= form.text_field :superficie %>
+  </div>
+
+  <div>
+    <%= form.label :n_bagni, style: "display: block" %>
+    <%= form.number_field :n_bagni %>
+  </div>
+
+  <div>
+    <%= form.label :n_camere, style: "display: block" %>
+    <%= form.number_field :n_camere %>
+  </div>
+
+  <div>
+    <%= form.label :n_cucine, style: "display: block" %>
+    <%= form.number_field :n_cucine %>
+  </div>
+
+  <div>
+    <%= form.label :n_soggiorni, style: "display: block" %>
+    <%= form.number_field :n_soggiorni %>
+  </div>
+
+  <div>
+    <%= form.label :n_singoli, style: "display: block" %>
+    <%= form.number_field :n_singoli %>
+  </div>
+
+  <div>
+    <%= form.label :n_doppi, style: "display: block" %>
+    <%= form.number_field :n_doppi %>
+  </div>
+
+  <div>
+    <%= form.label :n_culle, style: "display: block" %>
+    <%= form.number_field :n_culle %>
+  </div>
+
+  <div>
+    <%= form.label :n_divani, style: "display: block" %>
+    <%= form.number_field :n_divani %>
+  </div>
+
+  <div>
+    <%= form.label :allergie, style: "display: block" %>
+    <%= form.check_box :allergie %>
+  </div>
+
+  <div>
+    <%= form.label :animali, style: "display: block" %>
+    <%= form.text_field :animali %>
+  </div>
+
+  <div>
+    <%= form.label :desc_casa, style: "display: block" %>
+    <%= form.text_area :desc_casa %>
+  </div>
+
+  <div>
+    <%= form.label :desc_quartiere, style: "display: block" %>
+    <%= form.text_area :desc_quartiere %>
+  </div>
+
+  <div>
+    <%= form.label :data_in, style: "display: block" %>
+    <%= form.date_field :data_in %>
+  </div>
+
+  <div>
+    <%= form.label :data_out, style: "display: block" %>
+    <%= form.date_field :data_out %>
+  </div>
+
+  <div>
+    <%= form.label :place_id, style: "display: block" %>
+    <%= form.text_field :place_id %>
+  </div>
+  <div>
+    <%= form.label :photos %>
+    <%= form.file_field :photos, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
