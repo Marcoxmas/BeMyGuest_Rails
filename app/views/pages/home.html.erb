@@ -3,15 +3,25 @@
             <%= image_tag ("loghi/logo 3.png"), class:"logo" %>
         </a>
         <div class="col-md-4">
-            <form class="form-inline" action="php/lista_case.php" method="POST">
+            <%= form_with( url: houses_path, method: 'get', data: { controller: "places", action: "google-maps-callback@window->places#initMap"}) do |form| %>
+            <%# <form class="form-inline" action="php/lista_case.php" method="POST"> %>
                 <div class="input-group hidden" id="barra-ricerca">
-                    <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
-                        aria-label="Search" autocomplete="off" id="ricerca" name="citta">
-                    <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
+                    <%# <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
+                        aria-label="Search" autocomplete="off" id="ricerca" name="citta"> %>
+                    
+                    <%= form.search_field :address, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
+                        <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
+                        <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
+
+                    <%= image_submit_tag("loghi/search.svg", class: 'btn iscriviti-bottone bottone-ricerca') %>
+
+                   <%#  <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
                         <%= image_tag ("loghi/search.svg"), class:"con-icona" %>
-                    </button>
+                    <%#</button> %>
+
                 </div>
-            </form>
+            <% end %>
+            <%# </form> %>
             <%# <div class="suggerimenti" id="card-suggerimenti"> %>
 
             </div>

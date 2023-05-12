@@ -11,9 +11,10 @@ export default class extends Controller {
 
   initMap() {
     //39.5 -98.35 sono usa per centrare la mappa se non ci sono altre coordinate
+    //41.5 12.4 sono roma
     this.map = new google.maps.Map(this.mapTarget, {
-      center: new google.maps.LatLng(this.data.get("latitude") || 39.5, this.data.get("longitude") || -98.35),
-      zoom: (this.data.get("latitude") == null ? 4 : 15)
+      center: new google.maps.LatLng(this.data.get("latitude") || 41.5, this.data.get("longitude") || 12.4),
+      zoom: (this.data.get("latitude") == null ? 6 : 15)
     })
 
     this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)
