@@ -68,16 +68,16 @@
                     <%# <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
                         aria-label="Search" autocomplete="off" id="ricerca2" name="citta"> %>
                     <%= form.search_field :address, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
-                        <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
-                        <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
-
                     <%= image_submit_tag("loghi/search.svg", class: 'btn iscriviti-bottone bottone-ricerca') %>
+
                    
                     
                     <%# <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
                         <%= image_tag ("loghi/search.svg"), class:"con-icona" %>
                     <%#</button> %>
                 </div>
+                        <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
+                        <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
             <%# </form> %>
                 <div data-target="places.map" style="display: none;"></div>
             <% end %>
