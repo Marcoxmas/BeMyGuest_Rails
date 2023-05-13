@@ -1,9 +1,11 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ "field", "map", "latitude", "longitude" ]
 
   connect() {
+    console.log("hiiiiiii")
+
     if (typeof(google) != "undefined") {
       this.initMap()
     }

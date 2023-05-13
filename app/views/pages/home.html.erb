@@ -14,12 +14,14 @@
                         <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
 
                     <%= image_submit_tag("loghi/search.svg", class: 'btn iscriviti-bottone bottone-ricerca') %>
+                   
 
                    <%#  <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
                         <%= image_tag ("loghi/search.svg"), class:"con-icona" %>
                     <%#</button> %>
 
-                </div>
+                </div> 
+                <div data-target="places.map" style="display: none;"></div>
             <% end %>
             <%# </form> %>
             <%# <div class="suggerimenti" id="card-suggerimenti"> %>
@@ -58,15 +60,28 @@
         </div>
         <h1 id="titolo-immagine">Your home away from home</h1>
         <div class="col-md-4">
-            <form class="form-inline" action="php/lista_case.php" method="POST">
+            
+            <%= form_with( url: houses_path, method: 'get', data: { controller: "places", action: "google-maps-callback@window->places#initMap"}) do |form| %>
+            <%# <form class="form-inline" action="php/lista_case.php" method="POST"> %>
                 <div class="input-group" id="barra-ricerca2">
-                    <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
-                        aria-label="Search" autocomplete="off" id="ricerca2" name="citta">
-                    <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
+
+                    <%# <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
+                        aria-label="Search" autocomplete="off" id="ricerca2" name="citta"> %>
+                    <%= form.search_field :address, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
+                        <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
+                        <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
+
+                    <%= image_submit_tag("loghi/search.svg", class: 'btn iscriviti-bottone bottone-ricerca') %>
+                   
+                    
+                    <%# <button type="submit" class="btn iscriviti-bottone bottone-ricerca">
                         <%= image_tag ("loghi/search.svg"), class:"con-icona" %>
-                    </button>
+                    <%#</button> %>
                 </div>
-            </form>
+            <%# </form> %>
+                <div data-target="places.map" style="display: none;"></div>
+            <% end %>
+
             <%# <div class="suggerimenti" id="card-suggerimenti2"> %>
 
             </div>
