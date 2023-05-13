@@ -3,7 +3,14 @@ class HousesController < ApplicationController
 
   # GET /houses or /houses.json
   def index
-    @houses = House.all
+    base = House
+    if(params[:citta] != nil && params[:nazione] != nil)
+      na = params[:nazione]
+      ci = params[:citta]
+      base = base.where('citta = :citta AND nazione = :nazione', {citta: :ci, nazione: :na})
+    end
+
+    @houses = base.all
   end
 
   # GET /houses/1 or /houses/1.json
@@ -13,6 +20,7 @@ class HousesController < ApplicationController
   # GET /houses/new
   def new
     @house = House.new
+    #@house.user_id = user_signed_in o qualcosa del genere
   end
 
   # GET /houses/1/edit

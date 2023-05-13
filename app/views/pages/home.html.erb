@@ -10,8 +10,7 @@
                         aria-label="Search" autocomplete="off" id="ricerca" name="citta"> %>
                     
                     <%= form.search_field :address, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
-                        <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
-                        <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
+                        
 
                     <%= image_submit_tag("loghi/search.svg", class: 'btn iscriviti-bottone bottone-ricerca') %>
                    
@@ -21,6 +20,8 @@
                     <%#</button> %>
 
                 </div> 
+                <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
+                <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
                 <div data-target="places.map" style="display: none;"></div>
             <% end %>
             <%# </form> %>
@@ -37,9 +38,13 @@
             <button class="btn login-button margine-10">
             <a class="link-light link-underline-opacity-100-hover link-underline-opacity-0" href="#">Visualizza le tue case</a>
             </button>
+
+            
             <button class="btn login-button margine-10">
-            <a class="link-light link-underline-opacity-100-hover link-underline-opacity-0" href="#">Aggiungi la tua casa</a>
-            </button>
+            <%= link_to "Aggiungi la tua casa", new_house_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+<%#             <a class="link-light link-underline-opacity-100-hover link-underline-opacity-0" href="#">Aggiungi la tua casa</a>
+ %>          </button>
+
             <button class="btn btn-danger margine-10">
             <%= link_to 'Log Out', destroy_user_session_path, data: { "turbo_method": :delete }, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
             </button>
