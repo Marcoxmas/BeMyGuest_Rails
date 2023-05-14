@@ -8,7 +8,14 @@ class HousesController < ApplicationController
       na = params[:nazione]
       ci = params[:citta]
       base = base.where('citta = :citta AND nazione = :nazione', {citta: :ci, nazione: :na})
+    elsif (params[:citta] != nil && params[:nazione] == nil)
+      ci = params[:citta]
+      base = base.where('citta = :citta ', {citta: :ci})
+    elsif (params[:citta] == nil && params[:nazione] != nil)
+      na = params[:nazione]
+      base = base.where('nazione = :nazione', {nazione: :na})
     end
+    
 
     @houses = base.all
   end
