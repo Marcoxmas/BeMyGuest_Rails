@@ -4,19 +4,20 @@ class HousesController < ApplicationController
   # GET /houses or /houses.json
   def index
     base = House
-    if(params[:citta] != '' && params[:nazione] != '')
-      na = params[:nazione]
-      ci = params[:citta]
-      base = base.where('citta = :citta AND nazione = :nazione', {citta: ci, nazione: na})
-    elsif (params[:citta] != '' && params[:nazione] == '')
-      ci = params[:citta]
-      base = base.where('citta = :citta ', {citta: ci})
-    elsif (params[:citta] == '' && params[:nazione] != '')
-      na = params[:nazione]
-      base = base.where('nazione = :nazione', {nazione: na})
+    if(params[:citta] != nil && params[:nazione] != nil)
+      if(params[:citta] != '' && params[:nazione] != '')
+        na = params[:nazione]
+        ci = params[:citta]
+        base = base.where('citta = :citta AND nazione = :nazione', {citta: ci, nazione: na})
+      elsif (params[:citta] != '' && params[:nazione] == '')
+        ci = params[:citta]
+        base = base.where('citta = :citta ', {citta: ci})
+      elsif (params[:citta] == '' && params[:nazione] != '')
+        na = params[:nazione]
+        base = base.where('nazione = :nazione', {nazione: na})
+      end
     end
-    
-
+ 
     @houses = base.all
   end
 
