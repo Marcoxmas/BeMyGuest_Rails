@@ -140,83 +140,102 @@
                 <div class="destinazioni">
                     <div class="row">
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=Parigi">
+                        
+                            <%# <a href="/php/lista_case.php?citta=Parigi"> %>
+                            <a>
+                            <%= link_to  houses_path(citta: :Parigi, nazione: :Francia) do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/fotoparigi.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/parigiscritta.png'%>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
+                        
                         </div>
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=Berlino">
+                            <a>
+                            <%= link_to  houses_path(citta: :Berlino, nazione: :Germania) do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/fotoberlino.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/berlinoscritta.png' %>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
                         </div>
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=Londra">
+                            <a>
+                            <%= link_to  houses_path(citta: :Londra, nazione: :'Regno Unito') do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/fotolondra.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/londrascritta.png' %>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
                         </div>
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=Los%20Angeles">
+                            <a>
+                            <%= link_to  houses_path(citta: :'Los Angeles', nazione: :'Stati Uniti') do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/fotolosangeles.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/losangelesscritta.png' %>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
                         </div>
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=Milano">
+                            <a>
+                            <%= link_to  houses_path(citta: :Milano, nazione: :Italia) do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/fotomilano.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/milanoscritta.png' %>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
                         </div>
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=New%20York">
+                            <a>
+                            <%= link_to  houses_path(citta: :'New York', nazione: :'Stati Uniti') do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/fotonewyork.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/newyorkscritta.png' %>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
                         </div>
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=Roma">
+                            <a>
+                            <%= link_to  houses_path(citta: :Roma, nazione: :Italia) do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/fotoroma.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/romascritta.png' %>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
                         </div>
                         <div class="destinazione col-lg-3">
-                            <a href="/php/lista_case.php?citta=Lisbona">
+                            <a>
+                            <%= link_to  houses_path(citta: :Lisbona, nazione: :Portogallo) do %>
                                 <div class="immagine-destinazione"
                                     style="background-image: url(<%= asset_path 'immagini-città/Lisbona.jpeg' %>);">
                                     <div class="scritta-interna"
                                         style="background-image: url(<%= asset_path 'scritte-città/lisbonascritta.png' %>);">
                                     </div>
                                 </div>
+                            <% end %>
                             </a>
                         </div>
                     </div>
