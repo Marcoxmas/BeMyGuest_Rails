@@ -20,8 +20,8 @@
                     <%#</button> %>
 
                 </div> 
-                <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
-                <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
+                <%= form.text_field :citta, style: 'display: none;', data: { target: "places.latitude" } %>
+                <%= form.text_field :nazione, style: 'display: none;', data: { target: "places.longitude" } %>
                 <div data-target="places.map" style="display: none;"></div>
             <% end %>
             <%# </form> %>
@@ -81,8 +81,8 @@
                         <%= image_tag ("loghi/search.svg"), class:"con-icona" %>
                     <%#</button> %>
                 </div>
-                        <%= form.text_field :citta, class: 'hidden', data: { target: "places.latitude" } %>
-                        <%= form.text_field :nazione, class: 'hidden', data: { target: "places.longitude" } %>
+                        <%= form.text_field :citta, style: 'display: none;', data: { target: "places.latitude" } %>
+                        <%= form.text_field :nazione, style: 'display: none;', data: { target: "places.longitude" } %>
             <%# </form> %>
                 <div data-target="places.map" style="display: none;"></div>
             <% end %> 
