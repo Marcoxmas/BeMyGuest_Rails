@@ -1,7 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Houses</h1>
-
+<button class="btn login-button margine-10">
+<%= link_to "torna alla Home", root_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+</button>
+<br>
 <div id="houses">
   <% @houses.each do |house| %>
     <%= render house %>

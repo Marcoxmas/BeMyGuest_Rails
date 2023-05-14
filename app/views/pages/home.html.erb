@@ -9,7 +9,7 @@
                     <%# <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
                         aria-label="Search" autocomplete="off" id="ricerca" name="citta"> %>
                     
-                    <%= form.search_field :address, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
+                    <%= form.search_field :address, name: nil, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
                         
 
                     <%= image_submit_tag("loghi/search.svg", class: 'btn iscriviti-bottone bottone-ricerca') %>
@@ -72,7 +72,7 @@
 
                     <%# <input class="form-control ricerca" type="search" placeholder="Quale destinazione hai in mente?"
                         aria-label="Search" autocomplete="off" id="ricerca2" name="citta"> %>
-                    <%= form.search_field :address, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
+                    <%= form.search_field :address, name: nil, class: 'form-control ricerca', data: { target: "places.field", action: "keydown->places#keydown" }, placeholder: "Quale destinazione hai in mente?"%>
                     <%= image_submit_tag("loghi/search.svg", class: 'btn iscriviti-bottone bottone-ricerca') %>
 
                    
