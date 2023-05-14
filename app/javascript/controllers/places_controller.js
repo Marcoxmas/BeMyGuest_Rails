@@ -29,6 +29,9 @@ export default class extends Controller {
     this.autocomplete.addListener('place_changed', this.placeChanged.bind(this))
 
     
+
+
+    
     this.marker = new google.maps.Marker({
       map: this.map,
       anchorPoint: new google.maps.Point(0, -29)
@@ -37,8 +40,7 @@ export default class extends Controller {
 
   placeChanged() {
     let place = this.autocomplete.getPlace()
-
-    console.log(place)
+    //console.log(place)
 
     if (!place.geometry) {
       window.alert(`No details available for input: ${place.name}`)

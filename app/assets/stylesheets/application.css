@@ -135,6 +135,23 @@
     overflow: scroll;
 }
 
+/*pac*/
+.pac-container {
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: inherit;
+    
+    padding-top: 15px;
+    
+}
+
+.notice:empty , .alert:empty{
+    display: none !important;
+}
+/*pac*/
 .suggerimento:hover {
     background-color: #448add;
     transition: ease 0.5s;
