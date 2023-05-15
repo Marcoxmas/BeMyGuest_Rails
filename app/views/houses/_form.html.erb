@@ -1,4 +1,4 @@
-<%= form_with(model: house) do |form| %>
+<%= form_with(model: house, local: true, data: { controller: "maps", action: "google-maps-callback@window->maps#initMap", maps_latitude: house.citta, maps_longitude: house.nazione, maps_placeidd: house.place_id }) do |form| %>
   <% if house.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>
@@ -96,10 +96,19 @@
     <%= form.date_field :data_out %>
   </div>
 
+
+<br>
   <div>
-    <%= form.label :place_id, style: "display: block" %>
-    <%= form.text_field :place_id %>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.search_field :address, class: 'form-control', data: { target: "maps.field", action: "keydown->maps#keydown" } %>
   </div>
+  <div style="display: none;">
+    <%= form.label :place_id %>
+    <%= form.search_field :place_id, data: { target: "maps.placeidd" } %>
+  </div>
+<br>
+
+
   <div>
     <%= form.label :photos %>
     <%= form.file_field :photos, multiple: true %>
@@ -107,5 +116,17 @@
 
   <div>
     <%= form.submit %>
+  </div>
+
+
+  <br>
+  <%= form.label :citta, style: "display: block" %>
+  <%= form.text_field :citta, data: { target: "maps.longitude" }, readonly:true %>
+
+  <%= form.label :nazione, style: "display: block" %>
+  <%= form.text_field :nazione, data: { target: "maps.latitude" }, readonly:true %>
+  <br>
+  <div>
+    <div data-target="maps.map" style="height:400px;width:700px"></div>
   </div>
 <% end %>
