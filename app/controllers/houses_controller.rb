@@ -4,20 +4,20 @@ class HousesController < ApplicationController
   # GET /houses or /houses.json
   def index
     base = House
-    if(params[:citta] != nil && params[:nazione] != nil)
-      if(params[:citta] != '' && params[:nazione] != '')
+    if (params[:citta] != nil && params[:nazione] != nil)
+      if (params[:citta] != "" && params[:nazione] != "")
         na = params[:nazione]
         ci = params[:citta]
-        base = base.where('citta = :citta AND nazione = :nazione', {citta: ci, nazione: na})
-      elsif (params[:citta] != '' && params[:nazione] == '')
+        base = base.where("citta = :citta AND nazione = :nazione", { citta: ci, nazione: na })
+      elsif (params[:citta] != "" && params[:nazione] == "")
         ci = params[:citta]
-        base = base.where('citta = :citta ', {citta: ci})
-      elsif (params[:citta] == '' && params[:nazione] != '')
+        base = base.where("citta = :citta ", { citta: ci })
+      elsif (params[:citta] == "" && params[:nazione] != "")
         na = params[:nazione]
-        base = base.where('nazione = :nazione', {nazione: na})
+        base = base.where("nazione = :nazione", { nazione: na })
       end
     end
- 
+
     @houses = base.all
   end
 
@@ -82,6 +82,6 @@ class HousesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def house_params
-    params.require(:house).permit(:user_id, :tipologia, :superficie, :n_bagni, :n_camere, :n_cucine, :n_soggiorni, :n_singoli, :n_doppi, :n_culle, :n_divani, :allergie, :animali, :desc_casa, :desc_quartiere, :data_in, :data_out, :place_id, photos: [])
+    params.require(:house).permit(:user_id, :tipologia, :superficie, :n_bagni, :n_camere, :n_cucine, :n_soggiorni, :n_singoli, :n_doppi, :n_culle, :n_divani, :allergie, :animali, :desc_casa, :desc_quartiere, :data_in, :data_out, :place_id, :citta, :nazione, photos: [])
   end
 end
