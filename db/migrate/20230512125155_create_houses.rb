@@ -18,8 +18,7 @@ class CreateHouses < ActiveRecord::Migration[7.0]
       t.text :desc_quartiere
       t.date :data_in
       t.date :data_out
-      t.references :place, null: false, foreign_key: true
-
+      t.string :place_id
       t.timestamps
     end
   end

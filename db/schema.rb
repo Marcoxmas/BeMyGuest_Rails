@@ -57,12 +57,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_132710) do
     t.text "desc_quartiere"
     t.date "data_in"
     t.date "data_out"
-    t.integer "place_id", null: false
+    t.string "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "citta"
     t.string "nazione"
-    t.index ["place_id"], name: "index_houses_on_place_id"
     t.index ["user_id"], name: "index_houses_on_user_id"
   end
 
@@ -96,6 +95,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_132710) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "houses", "places"
   add_foreign_key "houses", "users"
 end
