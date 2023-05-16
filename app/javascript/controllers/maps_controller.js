@@ -17,6 +17,8 @@ export default class extends Controller {
       this.data.get("latitude") ||
       this.data.get("longitude") ||
     */
+    let p_id = this.data.get("placeidd")
+    console.log(p_id)
     this.map = new google.maps.Map(this.mapTarget, {
       center: new google.maps.LatLng( 41.5, 12.4),
       zoom: (this.data.get("latitude") == null ? 6 : 15)
@@ -28,10 +30,6 @@ export default class extends Controller {
     this.autocomplete.setFields(['address_components', 'geometry', 'icon', 'name', "formatted_address", "place_id"])
     this.autocomplete.setTypes(['address'])
     this.autocomplete.addListener('place_changed', this.placeChanged.bind(this))
-
-    
-
-
     
     this.marker = new google.maps.Marker({
       map: this.map,
@@ -41,7 +39,7 @@ export default class extends Controller {
 
   placeChanged() {
     let place = this.autocomplete.getPlace()
-    //console.log(place)
+    console.log(place)
 
     if (!place.geometry) {
       window.alert(`No details available for input: ${place.name}`)
@@ -62,6 +60,7 @@ export default class extends Controller {
     let country = null
     let city = null
     let lenn = place.address_components.length
+    let via = null, street = null
     for (let i = 0; i < lenn; i++){
       let comp = place.address_components[i]
       if(comp.types[0] == 'locality'){
@@ -70,9 +69,25 @@ export default class extends Controller {
       if(comp.types[0] == 'country'){
         country = comp.long_name
       }
+      if(comp.types[0] == 'postal_town'){
+        city = comp.long_name
+      }
+      if(comp.types[0] == 'administrative_area_level_3'){
+        city = comp.long_name
+      }
+      if(comp.types[0] == 'route'){
+        via = comp.long_name
+      }
+      if(comp.types[0] == 'street_number'){
+        street = comp.long_name
+      }
 
     }
-
+    if (!via || !street){
+      window.alert(`Selezionare un indirizzo valido (via o numero civico assenti)`)
+      return
+    }
+    
     this.latitudeTarget.value = city
     this.longitudeTarget.value =  country
     this.placeiddTarget.value = place.place_id

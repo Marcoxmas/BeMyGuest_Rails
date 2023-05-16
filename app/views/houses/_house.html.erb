@@ -88,6 +88,14 @@
     <strong>Place:</strong>
     <%= house.place_id %>
   </p>
+   <p>
+    <strong>Città:</strong>
+    <%= house.citta %>
+  </p>
+   <p>
+    <strong>Nazione:</strong>
+    <%= house.nazione %>
+  </p>
 
   <% house.photos.each do |photo| %>
     <%= image_tag (photo) %>
