@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [ "field", "map", "latitude", "longitude", "placeidd" ]
 
   connect() {
-    console.log("sto in maps controller")
+    //console.log("sto in maps controller")
     if (typeof(google) != "undefined") {
       this.initMap()
     }
@@ -18,7 +18,7 @@ export default class extends Controller {
       this.data.get("longitude") ||
     */
     let p_id = this.data.get("placeidd")
-    console.log(p_id)
+    //console.log(p_id)
     this.map = new google.maps.Map(this.mapTarget, {
       center: new google.maps.LatLng( 41.5, 12.4),
       zoom: (this.data.get("latitude") == null ? 6 : 15)

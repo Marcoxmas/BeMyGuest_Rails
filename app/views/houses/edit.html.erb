@@ -104,21 +104,11 @@
 <br>
   <div>
     <%= form.label :address, style: "display: block" %>
-    <%= form.search_field :address, name: nil, class: 'form-control', data: { target: "location.field"} %>
+    <%= form.text_field :address, name: nil, data: { target: "location.field"}, readonly:true %>
   </div>
-  <div >
-    <%= form.label :place_id %>
+  <div style="display: none;" >
     <%= form.text_field :place_id, data: { target: "location.placeidd" }, readonly:true %>
   </div>
-<br>
-  <div>
-    <%= form.label :photos %>
-    <%= form.file_field :photos, multiple: true %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-  <br>
   <p>
     <strong>Città:</strong>
     <%= house.citta %>
@@ -127,11 +117,19 @@
     <strong>Nazione:</strong>
     <%= house.nazione %>
   </p>
-  
-  <br>
   <div>
     <div data-target="location.map" style="height:400px;width:700px"></div>
   </div>
+  <br>
+  <div>
+    <%= form.label :photos %>
+    <%= form.file_field :photos, multiple: true %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+  <br>
+  
 <% end %>
 
 <br>

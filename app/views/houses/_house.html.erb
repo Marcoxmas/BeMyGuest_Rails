@@ -84,19 +84,28 @@
     <%= house.data_out %>
   </p>
 
-  <p>
-    <strong>Place:</strong>
-    <%= house.place_id %>
-  </p>
-   <p>
-    <strong>Città:</strong>
-    <%= house.citta %>
-  </p>
-   <p>
-    <strong>Nazione:</strong>
-    <%= house.nazione %>
-  </p>
+  <%= form_with(model: house, local: true, data: { controller: "location", action: "google-maps-callback@window->location#initMap", location_placeidd: house.place_id }) do |form| %>
 
+    <div>
+      <%= form.label :address, style: "display: block" %>
+      <%= form.text_field :address, name: nil, data: { target: "location.field"}, readonly:true %>
+    </div>
+    <div style="display: none;" >
+      <%= form.text_field :place_id, data: { target: "location.placeidd" }, readonly:true %>
+    </div>
+    <p>
+      <strong>Città:</strong>
+      <%= house.citta %>
+    </p>
+    <p>
+      <strong>Nazione:</strong>
+      <%= house.nazione %>
+    </p>
+    <div>
+      <div data-target="location.map" style="height:400px;width:700px"></div>
+    </div>
+  <%end%>
+<br>
   <% house.photos.each do |photo| %>
     <%= image_tag (photo) %>
   <%end%>
