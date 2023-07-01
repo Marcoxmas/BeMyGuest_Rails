@@ -10,9 +10,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    build_resource(sign_up_params)
+    resource.user_type ||= :regular_user
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      # Code for successful user creation
+      # For example, you can redirect the user to a specific page or show a success message.
+      redirect_to root_path, notice: "User registration successful!"
+    else
+      # Code for user creation failure
+      # For example, you can render the registration form again with an error message.
+      flash.now[:notice] = "User registration failed. Please try again."
+      render :new
+    end
+  end
+
 
   # GET /resource/edit
   # def edit
