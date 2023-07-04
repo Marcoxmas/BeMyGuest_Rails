@@ -1,0 +1,9 @@
+<!-- app/views/users/index.html.erb -->
+
+<h1>List of Users</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.name %>;<%= user.user_type %></li>
+  <% end %>
+</ul>
