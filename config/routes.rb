@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "pages#home"
   resources :users, only: [:index]
+  get 'users/:id/toggle_user_type' => "users#toggle_user_type", as: :toggle_user_type
 end
