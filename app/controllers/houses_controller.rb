@@ -18,6 +18,10 @@ class HousesController < ApplicationController
         base = base.where("nazione = :nazione", { nazione: na })
       end
     end
+    if (params[:user_id] != nil)
+      u = params[:user_id]
+      base = base.where("user_id = :user", {user: u})
+    end
 
     @houses = base.all
   end
@@ -28,9 +32,9 @@ class HousesController < ApplicationController
 
   # GET /houses/new
   def new
-    @house = House.new
-    #@house.user_id = user_signed_in o qualcosa del genere
+    @house = House.new(user_id: current_user.id)
   end
+  
 
   # GET /houses/1/edit
   def edit
@@ -39,6 +43,12 @@ class HousesController < ApplicationController
   # POST /houses or /houses.json
   def create
     @house = House.new(house_params)
+    servizi_ids = params[:house][:servizi] || []
+  
+    # Associa i servizi all'house_id
+    servizi_ids.each do |servizio_id|
+      @house.provides.create(service_id: servizio_id)
+    end
 
     respond_to do |format|
       if @house.save
@@ -83,6 +93,6 @@ class HousesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def house_params
-    params.require(:house).permit(:user_id, :tipologia, :superficie, :n_bagni, :n_camere, :n_cucine, :n_soggiorni, :n_singoli, :n_doppi, :n_culle, :n_divani, :allergie, :animali, :desc_casa, :desc_quartiere, :data_in, :data_out, :place_id, :citta, :nazione, photos: [])
+    params.require(:house).permit(:user_id, :tipologia, :superficie, :n_bagni, :n_camere, :n_cucine, :n_soggiorni, :n_singoli, :n_doppi, :n_culle, :n_divani, :allergie, :animali, :desc_casa, :desc_quartiere, :data_in, :data_out, :place_id, :citta, :nazione, servizi: [], photos: [])
   end
 end
