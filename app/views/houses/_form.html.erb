@@ -1,129 +1,433 @@
-<%= form_with(model: house, local: true, data: { controller: "maps", action: "google-maps-callback@window->maps#initMap", maps_latitude: house.citta, maps_longitude: house.nazione, maps_placeidd: house.place_id }) do |form| %>
-  <% if house.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>
-
-      <ul>
-        <% house.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="container" style="min-height: 0;">
+        <a href="">
+        <%= link_to(image_tag("loghi/logo 3.png", class:"form-casa-immagine"), root_path) %>
+      </a>
     </div>
-  <% end %>
+    <%= form_with(model: house, local: true, data: { controller: "maps", action: "google-maps-callback@window->maps#initMap", maps_latitude: house.citta, maps_longitude: house.nazione, maps_placeidd: house.place_id }) do |f| %>
+        <div class="container container-form">
+            <h1>Inserisci il tuo indirizzo.</h1>
+        </div>
+        <div class="container container-form" style="overflow:hidden; height:50vh;">
+            <div class="pac-card" id="pac-card">
+                <div>
+                    <div id="title">Inserisci l'indirizzo della casa</div>
+                </div>
+                <div id="pac-container">
+                    <%= f.search_field :address, name: nil, class: 'form-control pac-target-input', data: {target:"maps.field", action: "keydown->maps#keydown"} %>
+                </div>
+                <div>
+                  <%= f.label :place_id %>
+                  <%= f.text_field :place_id, data: {target: "maps.placeidd"}, readonly:true %>
+                </div>
+                <div>
+                  <%= f.label :citta, style:"display:block" %>
+                  <%= f.text_field :citta, data: {target: "maps.latitude"}, readonly:true %>
+                </div>
+                <div>
+                  <%= f.label :nazione, style:"display:block" %>
+                  <%= f.text_field :nazione, data: {target: "maps.longitude"}, readonly:true %>
+                </div>
+            </div>
+            <div>
+            <div data-target="maps.map" style="height:400px;width:700px"></div>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h1>Com'è la tua casa?</h1>
+        </div>
+        <div class="container container-form">
+            <h4>Tipologia</h4>
+            <div class="row">
+                <div class="col-sm-2 col-2">
+                    <%= f.radio_button :tipo, "appartamento" ,class: "checkbox-opzione" %>
+                    <%= f.label :tipo_appartamento, class: "opzione" do %>
+                      <%= image_tag("icone/appartamento.png", class: "icona-check") %>
+                      <span class="scritta-icona">Appartamento</span>
+                    <% end %>
+                </div>
+                <div class="col-sm-2 col-2">
+                    <%= f.radio_button :tipo, "casa" ,class: "checkbox-opzione" %>
+                    <%= f.label :tipo_casa, class: "opzione" do %>
+                      <%= image_tag("icone/casa.png", class: "icona-check") %>
+                      <span class="scritta-icona">Casa</span>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Quant'è grande?</h2>
+                <div class="row">
+                    <div class="form-floating mb-4">
+                        <input type="text" name="superficie" id="superficie" class="form-control"
+                            placeholder="Superficie in metri quadri" required>
+                        <label for="superficie" class="form-label">Superficie in metri quadri</label>
+                    </div>
+                </div>
+        </div>
+        <div class="container container-form">
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>Ambienti:</h4>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/lettodoppio.png" alt="">
+                            <span class="label-contatore">Camere da Letto</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="text" style="display: none;" value="1" required min="1"
+                                    id="formnumerocamere" name="form-numero-camere">
+                                <button type="button" class="input-number-btn" id="bottonedecrementacamere"
+                                    onclick="decrementa('numerocamere', 'formnumerocamere')">−</button>
+                                <span class="input-number-value" id="numerocamere">1</span>
+                                <button type="button" class="input-number-btn" id="bottoneincrementacamere"
+                                    onclick="incrementa('numerocamere', 'formnumerocamere')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/bath.png" alt="">
+                            <span class="label-contatore">Bagni</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="number" style="display: none;" value="1" required min="1"
+                                    id="form-numero-bagni" name="form-numero-bagni">
+                                <button type="button" class="input-number-btn" id="bottone-dec-bagni"
+                                    onclick="decrementa('numero-bagni', 'form-numero-bagni')">−</button>
+                                <span class="input-number-value" id="numero-bagni">1</span>
+                                <button type="button" class="input-number-btn" id="bottone-inc-bagni"
+                                    onclick="incrementa('numero-bagni', 'form-numero-bagni')">+</button>
+                            </div>
+                        </div>
+                    </div>
 
-  <div>
-    <%= form.label :tipologia, style: "display: block" %>
-    <%= form.text_field :tipologia %>
-  </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/cucina.png" alt="">
+                            <span class="label-contatore">Cucine</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="number" style="display: none;" value="1" required min="1"
+                                    id="form-numero-cucine" name="form-numero-cucine">
+                                <button type="button" class="input-number-btn" id="bottone-dec-cucine"
+                                    onclick="decrementa('numero-cucine', 'form-numero-cucine')">−</button>
+                                <span class="input-number-value" id="numero-cucine">1</span>
+                                <button type="button" class="input-number-btn" id="bottone-inc-cucine"
+                                    onclick="incrementa('numero-cucine', 'form-numero-cucine')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/sofa.png" alt="">
+                            <span class="label-contatore">Soggiorni</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="number" style="display: none;" value="0" required min="0"
+                                    id="form-numero-soggiorni" name="form-numero-soggiorni">
+                                <button type="button" class="input-number-btn" id="bottone-dec-soggiorni"
+                                    onclick="decrementa('numero-soggiorni', 'form-numero-soggiorni')">−</button>
+                                <span class="input-number-value" id="numero-soggiorni">0</span>
+                                <button type="button" class="input-number-btn" id="bottone-inc-soggiorni"
+                                    onclick="incrementa('numero-soggiorni', 'form-numero-soggiorni')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h4>Quante persone può ospitare?</h4>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/lettosingolo.png" alt="">
+                            <span class="label-contatore">Letti Singoli</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="number" style="display: none;" value="0" required min="0"
+                                    id="form-numero-lettosingolo" name="form-numero-lettosingolo">
+                                <button type="button" class="input-number-btn" id="bottone-dec-lettosingolo"
+                                    onclick="decrementa('numero-lettosingolo', 'form-numero-lettosingolo')">−</button>
+                                <span class="input-number-value" id="numero-lettosingolo">0</span>
+                                <button type="button" class="input-number-btn" id="bottone-inc-lettosingolo"
+                                    onclick="incrementa('numero-lettosingolo', 'form-numero-lettosingolo')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/lettodoppio.png" alt="">
+                            <span class="label-contatore">Letti Matrimoniali</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="number" style="display: none;" value="0" required min="0"
+                                    id="form-numero-lettomatrimoniale" name="form-numero-lettomatrimoniale">
+                                <button type="button" class="input-number-btn" id="bottone-dec-lettomatrimoniale"
+                                    onclick="decrementa('numero-lettomatrimoniale', 'form-numero-lettomatrimoniale')">−</button>
+                                <span class="input-number-value" id="numero-lettomatrimoniale">0</span>
+                                <button type="button" class="input-number-btn" id="bottone-inc-lettomatrimoniale"
+                                    onclick="incrementa('numero-lettomatrimoniale', 'form-numero-lettomatrimoniale')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/culla.png" alt="">
+                            <span class="label-contatore">Culle</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="number" style="display: none;" value="0" required min="0"
+                                    id="form-numero-culla" name="form-numero-culla">
+                                <button type="button" class="input-number-btn" id="bottone-dec-culla"
+                                    onclick="decrementa('numero-culla', 'form-numero-culla')">−</button>
+                                <span class="input-number-value" id="numero-culla">0</span>
+                                <button type="button" class="input-number-btn" id="bottone-inc-culla"
+                                    onclick="incrementa('numero-culla', 'form-numero-culla')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <img src="images/icone/sofa.png" alt="">
+                            <span class="label-contatore">Divani Letto</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                                <input type="number" style="display: none;" value="0" required min="0"
+                                    id="form-numero-sofa" name="form-numero-sofa">
+                                <button type="button" class="input-number-btn" id="bottone-dec-sofa"
+                                    onclick="decrementa('numero-sofa', 'form-numero-sofa')">−</button>
+                                <span class="input-number-value" id="numero-sofa">0</span>
+                                <button type="button" class="input-number-btn" id="bottone-inc-sofa"
+                                    onclick="incrementa('numero-sofa', 'form-numero-sofa')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Servizi:</h4>
+            <div class="row">
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "lavastoviglie" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_lavastoviglie, class: "opzione" do %>
+                      <%= image_tag("icone/lavastoviglie.png", class: "icona-check") %>
+                      <span class="scritta-icona">Lavastoviglie</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "lavatrice" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_lavatrice, class: "opzione" do %>
+                      <%= image_tag("icone/lavatrice.png", class: "icona-check") %>
+                      <span class="scritta-icona">Lavatrice</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "asciugatrice" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_asciugatrice, class: "opzione" do %>
+                      <%= image_tag("icone/asciugatrice.png", class: "icona-check") %>
+                      <span class="scritta-icona">Asciugatrice</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "microonde" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_microonde, class: "opzione" do %>
+                      <%= image_tag("icone/microonde.png", class: "icona-check") %>
+                      <span class="scritta-icona">Microonde</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "forno" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_forno, class: "opzione" do %>
+                      <%= image_tag("icone/forno.png", class: "icona-check") %>
+                      <span class="scritta-icona">Forno</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "frigo" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_frigo, class: "opzione" do %>
+                      <%= image_tag("icone/frigo.png", class: "icona-check") %>
+                      <span class="scritta-icona">Frigo</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "vasca" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_vasca, class: "opzione" do %>
+                      <%= image_tag("icone/vasca.png", class: "icona-check") %>
+                      <span class="scritta-icona">Vasca da bagno</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "tv" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_tv, class: "opzione" do %>
+                      <%= image_tag("icone/tv.png", class: "icona-check") %>
+                      <span class="scritta-icona">TV</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "computer" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_computer, class: "opzione" do %>
+                      <%= image_tag("icone/computer.png", class: "icona-check") %>
+                      <span class="scritta-icona">Computer</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "telefono" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_telefono, class: "opzione" do %>
+                      <%= image_tag("icone/telefono.png", class: "icona-check") %>
+                      <span class="scritta-icona">Telefono</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "condizionatore" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_condizionatore, class: "opzione" do %>
+                      <%= image_tag("icone/condizionatore.png", class: "icona-check") %>
+                      <span class="scritta-icona">Condizionatore</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "riscaldamento" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_riscaldamento, class: "opzione" do %>
+                      <%= image_tag("icone/riscaldamento.png", class: "icona-check") %>
+                      <span class="scritta-icona">Riscaldamento</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "balcone" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_balcone, class: "opzione" do %>
+                      <%= image_tag("icone/balcone.png", class: "icona-check") %>
+                      <span class="scritta-icona">Balcone</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "giardino" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_giardino, class: "opzione" do %>
+                      <%= image_tag("icone/giardino.png", class: "icona-check") %>
+                      <span class="scritta-icona">Giardino</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "pulizie" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_pulizie, class: "opzione" do %>
+                      <%= image_tag("icone/pulizie.png", class: "icona-check") %>
+                      <span class="scritta-icona">Servizi di Pulizia</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "portiere" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_portiere, class: "opzione" do %>
+                      <%= image_tag("icone/portiere.png", class: "icona-check") %>
+                      <span class="scritta-icona">Portiere</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "bicicletta" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_bicicletta, class: "opzione" do %>
+                      <%= image_tag("icone/bicicletta.png", class: "icona-check") %>
+                      <span class="scritta-icona">Bicicletta</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "parcheggio" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_parcheggio, class: "opzione" do %>
+                      <%= image_tag("icone/parcheggio.png", class: "icona-check") %>
+                      <span class="scritta-icona">Parcheggio</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "camino" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_camino, class: "opzione" do %>
+                      <%= image_tag("icone/camino.png", class: "icona-check") %>
+                      <span class="scritta-icona">Camino</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "ascensore" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_ascensore, class: "opzione" do %>
+                      <%= image_tag("icone/ascensore.png", class: "icona-check") %>
+                      <span class="scritta-icona">Ascensore</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "barcecue" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_barbecue, class: "opzione" do %>
+                      <%= image_tag("icone/barbecue.png", class: "icona-check") %>
+                      <span class="scritta-icona">Barbecue</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "piscina" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_piscina, class: "opzione" do %>
+                      <%= image_tag("icone/piscina.png", class: "icona-check") %>
+                      <span class="scritta-icona">Piscina</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.radio_button :servizi, "svago" ,class: "checkbox-opzione" %>
+                    <%= f.label :servizi_svago, class: "opzione" do %>
+                      <%= image_tag("icone/svago.png", class: "icona-check") %>
+                      <span class="scritta-icona">Svago</span>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <%= f.check_box :servizi_disabili, class: "checkbox-opzione" %>
+                    <%= f.label :servizi_disabili, class: "opzione" do %>
+                      <%= image_tag("icone/disabili.png", class: "icona-check") %>
+                      <span class="scritta-icona">Accesso Disabili</span>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Hai animali in casa?</h4>
+            <%= f.radio_button :animali, "si"%>
+            <%= f.label :animali_si, "Sì"%>
+            <%= f.radio_button :animali, "si"%>
+            <%= f.label :animali_no, "No"%>
+            <p>Specifica l'animale domestico:</p>
+            <div class="form-group">
+                <%= f.text_area(:desc_animali, class: "form-control areatesto") %>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Descrivi il tuo alloggio:</h4>
+            <div class="form-group">
+                <%= f.text_area(:desc_alloggio, class: "form-control areatesto") %>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Descrivi il tuo quartiere:</h4>
+            <div class="form-group">
+              <%= f.text_area(:desc_quartiere, class: "form-control areatesto") %>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Aggiungi foto della tua casa.</h4>
+            <%= f.file_field :photos, multiple:true %>
+        </div>
+        <div class="container container-form">
+            <h4>Quando vorresti partire?</h4>
+            <div id="query-result">
 
-  <div>
-    <%= form.label :superficie, style: "display: block" %>
-    <%= form.text_field :superficie %>
-  </div>
-
-  <div>
-    <%= form.label :n_bagni, style: "display: block" %>
-    <%= form.number_field :n_bagni %>
-  </div>
-
-  <div>
-    <%= form.label :n_camere, style: "display: block" %>
-    <%= form.number_field :n_camere %>
-  </div>
-
-  <div>
-    <%= form.label :n_cucine, style: "display: block" %>
-    <%= form.number_field :n_cucine %>
-  </div>
-
-  <div>
-    <%= form.label :n_soggiorni, style: "display: block" %>
-    <%= form.number_field :n_soggiorni %>
-  </div>
-
-  <div>
-    <%= form.label :n_singoli, style: "display: block" %>
-    <%= form.number_field :n_singoli %>
-  </div>
-
-  <div>
-    <%= form.label :n_doppi, style: "display: block" %>
-    <%= form.number_field :n_doppi %>
-  </div>
-
-  <div>
-    <%= form.label :n_culle, style: "display: block" %>
-    <%= form.number_field :n_culle %>
-  </div>
-
-  <div>
-    <%= form.label :n_divani, style: "display: block" %>
-    <%= form.number_field :n_divani %>
-  </div>
-
-  <div>
-    <%= form.label :allergie, style: "display: block" %>
-    <%= form.check_box :allergie %>
-  </div>
-
-  <div>
-    <%= form.label :animali, style: "display: block" %>
-    <%= form.text_field :animali %>
-  </div>
-
-  <div>
-    <%= form.label :desc_casa, style: "display: block" %>
-    <%= form.text_area :desc_casa %>
-  </div>
-
-  <div>
-    <%= form.label :desc_quartiere, style: "display: block" %>
-    <%= form.text_area :desc_quartiere %>
-  </div>
-
-  <div>
-    <%= form.label :data_in, style: "display: block" %>
-    <%= form.date_field :data_in %>
-  </div>
-
-  <div>
-    <%= form.label :data_out, style: "display: block" %>
-    <%= form.date_field :data_out %>
-  </div>
-
-
-<br>
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.search_field :address, name: nil, class: 'form-control', data: { target: "maps.field", action: "keydown->maps#keydown" } %>
-  </div>
-  <div >
-    <%= form.label :place_id %>
-    <%= form.text_field :place_id, data: { target: "maps.placeidd" }, readonly:true %>
-  </div>
-<br>
-  <div>
-    <%= form.label :photos %>
-    <%= form.file_field :photos, multiple: true %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-
-  <br>
-  <%= form.label :citta, style: "display: block" %>
-  <%= form.text_field :citta, data: { target: "maps.latitude" }, readonly:true %>
-
-  <%= form.label :nazione, style: "display: block" %>
-  <%= form.text_field :nazione, data: { target: "maps.longitude" }, readonly:true %>
-  <br>
-  <div>
-    <div data-target="maps.map" style="height:400px;width:700px"></div>
-  </div>
-<% end %>
+            </div>
+            <div class="d-flex justify-content-between" style="margin-right: 60%; margin-top: 15px;">
+                <div class="d-flex">
+                    <p>Check in</p>
+                    <%= f.date_field :data_in %>
+                </div>
+                <div class="d-flex">
+                    <p>Check out</p>
+                    <%= f.date_field :data_out %>
+                </div>
+            </div>
+            <br>
+            <%= f.submit "Conferma e invia", class: "btn login-button" %>
+        </div>
+    <% end %>

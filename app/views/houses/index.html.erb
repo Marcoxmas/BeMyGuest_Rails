@@ -1,120 +1,21 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Houses</h1>
-<button class="btn login-button margine-10">
-<%= link_to "torna alla Home", root_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
-</button>
-<br>
-<div id="houses">
-  <% @houses.each do |house| %>
-    <div id="<%= dom_id house %>">
-      <p>
-        <strong>User:</strong>
-        <%= house.user_id %>
-      </p>
-
-      <p>
-        <strong>Tipologia:</strong>
-        <%= house.tipologia %>
-      </p>
-
-      <p>
-        <strong>Superficie:</strong>
-        <%= house.superficie %>
-      </p>
-
-      <p>
-        <strong>N bagni:</strong>
-        <%= house.n_bagni %>
-      </p>
-
-      <p>
-        <strong>N camere:</strong>
-        <%= house.n_camere %>
-      </p>
-
-      <p>
-        <strong>N cucine:</strong>
-        <%= house.n_cucine %>
-      </p>
-
-      <p>
-        <strong>N soggiorni:</strong>
-        <%= house.n_soggiorni %>
-      </p>
-
-      <p>
-        <strong>N singoli:</strong>
-        <%= house.n_singoli %>
-      </p>
-
-      <p>
-        <strong>N doppi:</strong>
-        <%= house.n_doppi %>
-      </p>
-
-      <p>
-        <strong>N culle:</strong>
-        <%= house.n_culle %>
-      </p>
-
-      <p>
-        <strong>N divani:</strong>
-        <%= house.n_divani %>
-      </p>
-
-      <p>
-        <strong>Allergie:</strong>
-        <%= house.allergie %>
-      </p>
-
-      <p>
-        <strong>Animali:</strong>
-        <%= house.animali %>
-      </p>
-
-      <p>
-        <strong>Desc casa:</strong>
-        <%= house.desc_casa %>
-      </p>
-
-      <p>
-        <strong>Desc quartiere:</strong>
-        <%= house.desc_quartiere %>
-      </p>
-
-      <p>
-        <strong>Data in:</strong>
-        <%= house.data_in %>
-      </p>
-
-      <p>
-        <strong>Data out:</strong>
-        <%= house.data_out %>
-      </p>
-      <p>
-        <strong>Città:</strong>
-        <%= house.citta %>
-      </p>
-      <p>
-        <strong>Nazione:</strong>
-        <%= house.nazione %>
-      </p>
-
-      <br>
-      <% house.photos.each do |photo| %>
-        <%= image_tag (photo) %>
-      <%end%>
+<div class="container" style="min-height: 0;">
+<a href="">
+<%= link_to(image_tag("loghi/logo 3.png", class:"step-immagine login-immagine"), root_path) %>
+</a>
+    </div>
+    <div class="row">
+        <% @houses.each do |house| %>
+          <div class="card" style="width: 18rem;">
+          <%= image_tag(house.photos.first, class: "card-img-top immagine-card") %>
+            <div class="card-body">
+            <h5 class="card-title">La casa di <%= house.user_id %></h5>
+            <p class="card-text"><%= house.citta%> </p>
+            <button class="btn login-button margine-10">
+            <%= link_to "Show this house", house, class: "link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+            </button>
+            </div>
+          </div>
+        <% end %>
 
     </div>
-    
-    <button class="btn login-button margine-10">
-      <%= link_to "Show this house", house, class: "link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
-    </button>
-    <hr><br>
-
-  <% end %>
-</div>
-
-
-<%# <%= link_to "New house", new_house_path %>

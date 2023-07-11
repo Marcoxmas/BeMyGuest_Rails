@@ -111,3 +111,245 @@
   <%end%>
 
 </div>
+
+
+<div class="container" style="min-height: 0;">
+  <a href="">
+    <%= link_to(image_tag("loghi/logo 3.png", class:"form-casa-immagine"), root_path) %>
+  </a>
+    </div>
+    <div class="container container-form" style="margin-top : 10px">
+        <h2 class="titolo-bello">La casa di <%=house.user_id%></h4>
+            <div class="row">
+                <div class="col-6">
+                    <div class="container container-form">
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <?php
+                        $query_foto = "SELECT array_to_json(foto) as path_foto from \"case\" where id = $1";
+                        $result_foto = pg_query_params($dbconn, $query_foto, array($id_casa));
+                        $tuple_foto = pg_fetch_array($result_foto, NULL, PGSQL_ASSOC);
+                        $array_foto = json_decode($tuple_foto["path_foto"]);
+                        $count = 0;
+                        foreach($array_foto as $key => $foto) {
+                            if ($count == 0) {
+                                echo '<div class="carousel-item active">
+                                    <img class="d-block w-100 h-100" src="' . $foto . '">
+                                    </div>';
+                            } else {
+                                echo '<div class="carousel-item">
+                                    <img class="d-block w-100 h-100" src="' . $foto . '">
+                                    </div>';
+                            }
+                            $count = $count +1;
+                        }
+                                ?>
+                                <% counter = 0 %>
+                                <% house.photos.each do |photo| %>
+                                  <div class="carousel-item active">
+                                    <%= image_tag (photo) %>
+                                  </div>
+                                <%end%>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Precedente</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                data-bs-slide="next">
+                                <span class="sr-only">Successivo</span>
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="container container-form" style="overflow:hidden; height:50vh;">
+                        <div id="map">
+                            <script
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsArv5CLXw2Qu2sFSarDHiuNPCdNOuF0A&callback=initMap&libraries=places&v=weekly&language=it"
+                                defer></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
+    <div class="container container-form">
+        <div class="row">
+            <h4>Servizi disponibili:</h4>
+            <?php
+                $query_servizi = "SELECT array_to_json(servizi) as servizi from \"case\" where id = $1";
+                $result_servizi = pg_query_params($dbconn, $query_servizi, array($id_casa));
+                $tuple_servizi = pg_fetch_array($result_servizi, NULL, PGSQL_ASSOC);
+                $array_servizi = json_decode($tuple_servizi["servizi"]);
+                $count = 0;
+                foreach($array_servizi as $key => $servizio) {
+                    echo '<div class="col-lg-2 col-md-2 col-sm-4">
+                        <img class="icona-check" src="../images/icone/'. $servizio .'.png" alt="">
+                        <span class="scritta-icona">'. $servizio .'</span>
+                    </div>';
+                }        
+            ?>
+        </div>
+    </div>
+    <div class="container container-form">
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Ambienti:</h4>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/lettodoppio.png" alt="">
+                        <span class="label-contatore">Camere da Letto</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <?php echo $tuple["numero_camere"] ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/bath.png" alt="">
+                        <span class="label-contatore">Bagni</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <div class="input-number">
+                            <?php echo $tuple["numero_bagni"] ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/cucina.png" alt="">
+                        <span class="label-contatore">Cucine</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <div class="input-number">
+                            <?php echo $tuple["numero_cucine"] ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/sofa.png" alt="">
+                        <span class="label-contatore">Soggiorni</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <div class="input-number">
+                            <?php echo $tuple["numero_soggiorni"] ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h4>Quante persone può ospitare?</h4>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/lettosingolo.png" alt="">
+                        <span class="label-contatore">Letti Singoli</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <div class="input-number">
+                            <?php echo $tuple["numero_singoli"] ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/lettodoppio.png" alt="">
+                        <span class="label-contatore">Letti Matrimoniali</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <div class="input-number">
+                            <?php echo $tuple["numero_doppi"] ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/culla.png" alt="">
+                        <span class="label-contatore">Culle</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <div class="input-number">
+                            <?php echo $tuple["numero_culle"] ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <img src="../images/icone/sofa.png" alt="">
+                        <span class="label-contatore">Divani Letto</span>
+                    </div>
+                    <div class="input-number-container col-sm-4">
+                        <div class="input-number">
+                            <?php echo $tuple["numero_divani"] ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container container-form">
+        <div class="row">
+            <div class="col-6">
+                <h4>Descrizione alloggio:</h4>
+                <?php echo '<p>' . $tuple["descrizione_casa"] . '</p>' ?>
+            </div>
+            <div class="col-6">
+                <h4>Descrizione quartiere:</h4>
+                <?php echo '<p>' . $tuple["descrizione_quartiere"] . '</p>' ?>
+            </div>
+
+        </div>
+    </div>
+    <div class="container container-form">
+        <div class="row">
+            <h4>Animali in casa:</h4>
+            <?php 
+                $bool = $tuple["allergie"];
+                if ($bool === 'f') {
+                    echo '<p> Nessuno </p>';
+                } else {
+                    echo '<p>Sì:</p><br>';
+                    echo '<p>'. $tuple["animali"] .'</p>';
+                }
+            ?>
+        </div>
+    </div>
+    <div class="container container-form">
+        <div class="row">
+            <div class="col-sm-2">
+                <h4>Data Check-in</h4>
+                <?php
+                    echo $tuple["data_in"];
+                ?>
+            </div>
+            <div class="col-sm-2">
+                <h4>Data Check-out</h4>
+                <?php
+                    echo $tuple["data_out"];
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class="container container-form">
+        <?php
+            if ($_COOKIE["user"] == $tuple["proprietario"]){
+                echo '<a href="../homepage.html">
+                <button class="btn login-button" role="button">
+                    Ritorna all\'homepage.
+                </button>
+                </a>';
+            } else {
+                echo '<a href="mailto:'. $tuple["proprietario"] .'">
+                <button class="btn login-button" role="button">
+                    Contatta l\'host
+                </button>
+                </a>';
+            }
+        ?>
+    </div>
