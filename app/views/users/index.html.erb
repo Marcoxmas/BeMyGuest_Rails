@@ -2,8 +2,24 @@
 
 <h1>List of Users</h1>
 
-<ul>
-  <% @users.each do |user| %>
-    <li><%= user.name %>;<%= user.user_type %></li>
-  <% end %>
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User Type</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.user_type %></td>
+        <td>
+          <%= link_to 'Toggle User Type', toggle_user_type_path(user), method: :patch, class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

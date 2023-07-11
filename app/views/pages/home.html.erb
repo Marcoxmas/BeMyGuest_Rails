@@ -42,8 +42,10 @@
             
             <button class="btn login-button margine-10">
             <%= link_to "Aggiungi la tua casa", new_house_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
-<%#             <a class="link-light link-underline-opacity-100-hover link-underline-opacity-0" href="#">Aggiungi la tua casa</a>
- %>          </button>
+            </button>
+            <button class="btn login-button margine-10">
+            <%= link_to "Lista Utenti", users_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+            </button>
 
             <button class="btn btn-danger margine-10">
             <%= link_to 'Log Out', destroy_user_session_path, data: { "turbo_method": :delete }, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
