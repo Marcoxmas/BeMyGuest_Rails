@@ -366,6 +366,12 @@
                 </div>
             </div>
         </div>
+        <% Service.all.each do |service| %>
+            <div class="form-check">
+            <%= check_box_tag "house[provides_attributes][][service_id]", service.id %>
+            <%= label_tag "house_provides_attributes_service_id_#{service.id}", service.nome %>
+            </div>
+        <% end %>
         <div class="container container-form">
         <h4>Hai animali in casa?</h4>
         <%= f.radio_button :animali, true, onclick: "abilitadisabilita(1, 'house_desc_animali')", required: true, id: "animali-si" %>
