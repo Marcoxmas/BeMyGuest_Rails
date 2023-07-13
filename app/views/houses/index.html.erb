@@ -7,6 +7,7 @@
     <div class="row">
         <% @houses.each do |house| %>
           <div class="card" style="width: 18rem;">
+            
           <%= image_tag(house.photos.first, class: "card-img-top immagine-card") %>
             <div class="card-body">
             <h5 class="card-title">La casa di <%= house.user_id %></h5>
