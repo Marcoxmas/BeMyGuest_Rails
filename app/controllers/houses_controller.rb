@@ -1,5 +1,6 @@
 class HousesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user, only: :show
   before_action :set_house, only: %i[ show edit update destroy ]
 
   # GET /houses or /houses.json
@@ -89,4 +90,11 @@ class HousesController < ApplicationController
   def house_params
     params.require(:house).permit(:user_id, :tipologia, :superficie, :n_bagni, :n_camere, :n_cucine, :n_soggiorni, :n_singoli, :n_doppi, :n_culle, :n_divani, :allergie, :animali, :desc_casa, :desc_quartiere, :data_in, :data_out, :place_id, :citta, :nazione, provides_attributes: [:service_id], photos: [])
   end
+
+  def authorize_user
+    unless current_user.houses.exists?
+      redirect_to root_path, alert: "Per poter visualizzare una casa, devi prima crearne una!"
+    end
+  end
+  
 end
