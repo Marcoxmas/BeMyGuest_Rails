@@ -14,5 +14,12 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "pages#home"
   resources :users, only: [:index]
+
+  #routes per mail controller
+  resources :email_messages, only: [:new, :create]
+  #se voglio usare altra vista es. views/emails/send_email.html.erb
+  #get 'send_email', to: 'email_messages#new'
+  #post 'send_email', to: 'email_messages#create'
+
   get 'users/:id/toggle_user_type' => "users#toggle_user_type", as: :toggle_user_type
 end

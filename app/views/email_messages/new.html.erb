@@ -1,0 +1,19 @@
+<%= link_to(image_tag("loghi/logo 3.png", class:"step-immagine login-immagine"), root_path) %>
+
+<h1>send an email</h1>
+<%= form_with(model: @email_message , url: email_messages_path, local: true) do |form| %>
+<table><tr><td>
+    
+
+    <%= form.label :dest %></td><td>
+    <%= form.text_field :dest %></td></tr><tr><td>
+
+    <%= form.label :subject %></td><td>
+    <%= form.text_field :subject %></td></tr><tr><td>
+
+    <%= form.label :body %></td><td>
+    <%= form.text_area :body %></td></tr><tr><td colspan=2>
+
+    <%= form.submit "Send Email" %></td></tr>
+</table>
+<% end %>
