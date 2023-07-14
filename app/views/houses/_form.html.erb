@@ -417,5 +417,6 @@
             </div>
             <br>
             <%= f.submit "Conferma e invia", class: "btn login-button" %>
+            <%= link_to "Annulla", houses_path(user_id: current_user.id), data: { confirm: "Sei sicuro di voler annullare l'operazione?" }, class: "btn btn-danger margine-10"%>
         </div>
     <% end %>
