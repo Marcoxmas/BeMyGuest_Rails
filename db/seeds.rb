@@ -17,4 +17,13 @@ services = [
   services.each do |service|
     Service.find_or_create_by(nome: service)
   end
+
+  User.create(
+    name: "admin",
+    email: "admin@prova.it",
+    password: "asd",
+    password_confirmation: "asd",
+    user_type: "admin"
+  )
   
+  puts "Admin user created successfully."

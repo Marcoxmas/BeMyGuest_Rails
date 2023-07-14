@@ -12,9 +12,14 @@
             <div class="card-body">
             <h5 class="card-title">La casa di <%= house.user_id %></h5>
             <p class="card-text"><%= house.citta%> </p>
-            <button class="btn login-button margine-10">
-            <%= link_to "Show this house", house, class: "link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
-            </button>
+            <% if current_user == house.user || (current_user.user_type == 'admin' && current_user != house.user) %>
+              <%= link_to "Modifica", edit_house_path(house), class: "btn login-button margine-10" %>
+              <%= link_to "Elimina", house, method: :delete, data: { confirm: "Sei sicuro di voler eliminare questa casa?" }, class: "btn btn-danger margine-10", remote: true %>
+            <% end %>
+            <% if current_user.user_type == 'admin' && current_user != house.user %>
+              <%= link_to "Elimina come Admin", house, method: :delete, data: { confirm: "Sei sicuro di voler eliminare questa casa?" }, class: "btn btn-danger margine-10", remote: true %>
+            <% end %>
+            <%= link_to "Mostra questa casa", house, class: "btn login-button margine-10" %>
             </div>
           </div>
         <% end %>

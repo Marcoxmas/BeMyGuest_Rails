@@ -1,6 +1,7 @@
 class HousesController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user, only: :show
+  before_action :authorize_admin, only: :index
   before_action :set_house, only: %i[ show edit update destroy ]
 
   # GET /houses or /houses.json
@@ -94,6 +95,14 @@ class HousesController < ApplicationController
   def authorize_user
     unless current_user.houses.exists?
       redirect_to root_path, alert: "Per poter visualizzare una casa, devi prima crearne una!"
+    end
+  end
+
+  def authorize_admin
+    user = User.find(params[:user_id])
+    #a meno che non è il current user non voglio che utenti visualizzino la lista completa delle case altrui
+    unless current_user == user || current_user.user_type == 'admin'
+      redirect_to root_path, alert: "Non hai i permessi per visualizzare questa pagina"
     end
   end
   
