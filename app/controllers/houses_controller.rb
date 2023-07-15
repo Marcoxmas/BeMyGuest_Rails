@@ -45,7 +45,6 @@ class HousesController < ApplicationController
   # POST /houses or /houses.json
   def create
     @house = House.new(house_params)
-    @house.provides.destroy_all
 
     respond_to do |format|
       if @house.save

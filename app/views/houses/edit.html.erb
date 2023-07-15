@@ -131,6 +131,18 @@
                     <%= f.date_field :data_out %>
                 </div>
             </div>
+            <% if house.errors.any? %>
+              <div class="container container-form">
+                <div class="alert alert-danger">
+                  <h4>Errore nella modifica della casa:</h4>
+                  <ul>
+                    <% house.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            <%end%>
             <%= f.submit "Modifica", class: "btn login-button" %>
             <%= link_to "Annulla", houses_path(user_id: current_user.id), data: { confirm: "Sei sicuro di voler annullare l'operazione?" }, class: "btn btn-danger margine-10"%>
         </div>

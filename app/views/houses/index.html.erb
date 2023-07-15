@@ -12,13 +12,12 @@
             <div class="card-body">
             <h5 class="card-title">La casa di <%= User.find(house.user_id).name %></h5>
             <p class="card-text"><%= house.citta%> </p>
-            <% if current_user == house.user || (current_user.user_type == 'admin' && current_user != house.user) %>
+            <% if current_user == house.user || current_user.user_type == 'admin' %>
               <%= link_to "Modifica", edit_house_path(house), class: "btn login-button margine-10" %>
-              
             <% end %>
             <% if current_user.user_type == 'admin' && current_user != house.user %>
               <%= button_to 'Elimina come admin', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
-            <% elsif current_user.user_type != 'admin' && current_user == house.user%>
+            <% elsif current_user == house.user%>
               <%= button_to 'Elimina casa', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
             <% end %>
 
