@@ -15,7 +15,7 @@
                                 <% counter = 0 %>
                                 <% house.photos.each do |photo| %>
                                   <div class="carousel-item active">
-                                    <%= image_tag (photo) %>
+                                    <%= image_tag (photo), class: "d-block w-100 h-100" %>
                                   </div>
                                 <%end%>
                             </div>
