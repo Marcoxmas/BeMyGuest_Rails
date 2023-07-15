@@ -5,6 +5,10 @@
 <div>
   <%= link_to "Edit this house", edit_house_path(@house) %> |
   <%= link_to "Back to houses", houses_path %>
+  <div>
+    send a new mail message
+    <%= link_to 'invia', new_email_message_path(user_id: @house.user_id) %>
+  </div>
 
   <%= button_to "Destroy this house", @house, method: :delete %>
 </div>
