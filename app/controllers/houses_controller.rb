@@ -51,6 +51,7 @@ class HousesController < ApplicationController
         format.html { redirect_to house_url(@house), notice: "House was successfully created." }
         format.json { render :show, status: :created, location: @house }
       else
+        puts @house.errors.inspect
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @house.errors, status: :unprocessable_entity }
       end
