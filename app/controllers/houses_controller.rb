@@ -94,7 +94,7 @@ class HousesController < ApplicationController
   end
 
   def authorize_user
-    unless current_user.houses.exists?
+    unless current_user.user_type == "admin" || current_user.houses.exists?
       redirect_to root_path, alert: "Per poter visualizzare una casa, devi prima crearne una!"
     end
   end
