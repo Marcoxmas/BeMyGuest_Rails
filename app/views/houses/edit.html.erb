@@ -1,140 +1,140 @@
 <h1>Editing house</h1>
 
 <%#<%= render "form", house: @house %>
+
 <% house = @house%>
-<%= form_with(model: house, local: true, data: { controller: "location", action: "google-maps-callback@window->location#initMap", location_placeidd: house.place_id }) do |form| %>
-  <% if house.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>
 
-      <ul>
-        <% house.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+ <div class="container" style="min-height: 0;">
+        <a href="../homepage.html">
+            <%= link_to(image_tag("loghi/logo 3.png", class:"form-casa-immagine"), root_path) %>
+        </a>
     </div>
-  <% end %>
+    <%= form_with(model: house, local: true, data: { controller: "location", action: "google-maps-callback@window->location#initMap", location_placeidd: house.place_id }) do |f| %>
+        <%= f.hidden_field :user_id %>
+        <div class="container container-form">
+            <h1>Modifica la tua casa</h1>
+        </div>
+        <div class="container container-form">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>Quante persone può ospitare?</h4>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                        <%= image_tag("icone/lettosingolo.png", alt: "") %>
+                            <span class="label-contatore">Letti Singoli</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                            <%= f.number_field :n_singoli, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-lettosingolo"%>
+                            <button type="button" class="input-number-btn" id="bottone-dec-lettosingolo" onclick="decrementa('numero-lettosingolo', 'form-numero-lettosingolo')">−</button>
+                            <span class="input-number-value" id="numero-lettosingolo"><%= f.object.n_singoli || 0 %></span>
+                            <button type="button" class="input-number-btn" id="bottone-inc-lettosingolo" onclick="incrementa('numero-lettosingolo', 'form-numero-lettosingolo')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                        <%= image_tag("icone/lettodoppio.png", alt: "") %>
+                            <span class="label-contatore">Letti Matrimoniali</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                            <%= f.number_field :n_doppi, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-lettomatrimoniale" %>
+                            <button type="button" class="input-number-btn" id="bottone-dec-lettomatrimoniale" onclick="decrementa('numero-lettomatrimoniale', 'form-numero-lettomatrimoniale')">−</button>
+                            <span class="input-number-value" id="numero-lettomatrimoniale"><%= f.object.n_doppi || 0 %></span>
+                            <button type="button" class="input-number-btn" id="bottone-inc-lettomatrimoniale" onclick="incrementa('numero-lettomatrimoniale', 'form-numero-lettomatrimoniale')">+</button>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                        <%= image_tag("icone/culla.png", alt: "") %>
+                            <span class="label-contatore">Culle</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                            <%= f.number_field :n_culle, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-culla"%>
+                            <button type="button" class="input-number-btn" id="bottone-dec-culla" onclick="decrementa('numero-culla', 'form-numero-culla')">−</button>
+                            <span class="input-number-value" id="numero-culla"><%= f.object.n_culle || 0 %></span>
+                            <button type="button" class="input-number-btn" id="bottone-inc-culla" onclick="incrementa('numero-culla', 'form-numero-culla')">+</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                        <%= image_tag("icone/sofa.png", alt: "") %>
+                            <span class="label-contatore">Divani Letto</span>
+                        </div>
+                        <div class="input-number-container col-sm-4">
+                            <div class="input-number">
+                            <%= f.number_field :n_divani, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-sofa" %>
+                            <button type="button" class="input-number-btn" id="bottone-dec-sofa" onclick="decrementa('numero-sofa', 'form-numero-sofa')">−</button>
+                            <span class="input-number-value" id="numero-sofa"><%= f.object.n_divani || 0 %></span>
+                            <button type="button" class="input-number-btn" id="bottone-inc-sofa" onclick="incrementa('numero-sofa', 'form-numero-sofa')">+</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container container-form">
+        <h4>Servizi:</h4>
+            <div class="row">
+                <% Service.all.each do |service| %>
+                  <div class="col-lg-2 col-md-4">
+                    <%= check_box_tag "house[provides_attributes][][service_id]", service.id, house.provides.exists?(service_id: service.id), id: "house_provides_attributes_service_id_#{service.id}", class: "checkbox-opzione" %>
+                    <%= label_tag "house_provides_attributes_service_id_#{service.id}", class: "opzione", for: "house_provides_attributes_service_id_#{service.id}" do %>
+                      <%= image_tag("icone/#{service.nome}.png", class: "icona-check") %>
+                      <span class="scritta-icona"><%= service.nome %></span>
+                    <% end %>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="container container-form">
+        <h4>La tua casa è pet friendly?</h4>
+        <%= f.radio_button :animali, true, onclick: "abilitadisabilita(1, 'house_desc_animali')", required: true, id: "animali-si" %>
+        <%= f.label :animali_si, "Sì" %>
+        <%= f.radio_button :animali, false, onclick: "abilitadisabilita(0, 'house_desc_animali')", required: true, id: "animali-no" %>
+        <%= f.label :animali_no, "No" %>
+        </div>
+        <div class="container container-form">
+            <h4>Descrivi il tuo alloggio:</h4>
+            <div class="form-group">
+                <%= f.text_area(:desc_casa, class: "form-control areatesto") %>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Descrivi il tuo quartiere:</h4>
+            <div class="form-group">
+              <%= f.text_area(:desc_quartiere, class: "form-control areatesto") %>
+            </div>
+        </div>
+        <div class="container container-form">
+            <h4>Aggiungi foto della tua casa.</h4>
+            <%= f.file_field :photos, multiple:true %>
+        </div>
+        <div class="container container-form">
+            <h4>Quando vorresti partire?</h4>
+            <div id="query-result">
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :tipologia, style: "display: block" %>
-    <%= form.text_field :tipologia %>
-  </div>
-
-  <div>
-    <%= form.label :superficie, style: "display: block" %>
-    <%= form.text_field :superficie %>
-  </div>
-
-  <div>
-    <%= form.label :n_bagni, style: "display: block" %>
-    <%= form.number_field :n_bagni %>
-  </div>
-
-  <div>
-    <%= form.label :n_camere, style: "display: block" %>
-    <%= form.number_field :n_camere %>
-  </div>
-
-  <div>
-    <%= form.label :n_cucine, style: "display: block" %>
-    <%= form.number_field :n_cucine %>
-  </div>
-
-  <div>
-    <%= form.label :n_soggiorni, style: "display: block" %>
-    <%= form.number_field :n_soggiorni %>
-  </div>
-
-  <div>
-    <%= form.label :n_singoli, style: "display: block" %>
-    <%= form.number_field :n_singoli %>
-  </div>
-
-  <div>
-    <%= form.label :n_doppi, style: "display: block" %>
-    <%= form.number_field :n_doppi %>
-  </div>
-
-  <div>
-    <%= form.label :n_culle, style: "display: block" %>
-    <%= form.number_field :n_culle %>
-  </div>
-
-  <div>
-    <%= form.label :n_divani, style: "display: block" %>
-    <%= form.number_field :n_divani %>
-  </div>
-
-  <div>
-    <%= form.label :allergie, style: "display: block" %>
-    <%= form.check_box :allergie %>
-  </div>
-
-  <div>
-    <%= form.label :animali, style: "display: block" %>
-    <%= form.text_field :animali %>
-  </div>
-
-  <div>
-    <%= form.label :desc_casa, style: "display: block" %>
-    <%= form.text_area :desc_casa %>
-  </div>
-
-  <div>
-    <%= form.label :desc_quartiere, style: "display: block" %>
-    <%= form.text_area :desc_quartiere %>
-  </div>
-
-  <div>
-    <%= form.label :data_in, style: "display: block" %>
-    <%= form.date_field :data_in %>
-  </div>
-
-  <div>
-    <%= form.label :data_out, style: "display: block" %>
-    <%= form.date_field :data_out %>
-  </div>
+            </div>
+            <div class="d-flex justify-content-between" style="margin-right: 60%; margin-top: 15px;">
+                <div class="d-flex">
+                    <p>Check in</p>
+                    <%= f.date_field :data_in %>
+                </div>
+                <div class="d-flex">
+                    <p>Check out</p>
+                    <%= f.date_field :data_out %>
+                </div>
+            </div>
+            <%= f.submit "Modifica", class: "btn login-button" %>
+            <%= link_to "Annulla", houses_path(user_id: current_user.id), data: { confirm: "Sei sicuro di voler annullare l'operazione?" }, class: "btn btn-danger margine-10"%>
+        </div>
+        </div>
+    <%end%>
 
 
-<br>
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address, name: nil, data: { target: "location.field"}, readonly:true %>
-  </div>
-  <div style="display: none;" >
-    <%= form.text_field :place_id, data: { target: "location.placeidd" }, readonly:true %>
-  </div>
-  <p>
-    <strong>Città:</strong>
-    <%= house.citta %>
-  </p>
-  <p>
-    <strong>Nazione:</strong>
-    <%= house.nazione %>
-  </p>
-  <div>
-    <div data-target="location.map" style="height:400px;width:700px"></div>
-  </div>
-  <br>
-  <div>
-    <%= form.label :photos %>
-    <%= form.file_field :photos, multiple: true %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-  <br>
-  
-<% end %>
-
-<br>
-
-<div>
-  <%= link_to "Mostra questa casa", @house, class: "btn login-button margine-10" %>
-  <%= link_to "Annulla", houses_path(user_id: current_user.id), data: { confirm: "Sei sicuro di voler annullare l'operazione?" }, class: "btn btn-danger margine-10"%>
-</div>

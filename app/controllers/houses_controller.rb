@@ -45,6 +45,7 @@ class HousesController < ApplicationController
   # POST /houses or /houses.json
   def create
     @house = House.new(house_params)
+    @house.provides.destroy_all
 
     respond_to do |format|
       if @house.save
@@ -60,6 +61,8 @@ class HousesController < ApplicationController
 
   # PATCH/PUT /houses/1 or /houses/1.json
   def update
+    @house = House.find(params[:id])
+    @house.provides.destroy_all
     respond_to do |format|
       if @house.update(house_params)
         format.html { redirect_to house_url(@house), notice: "House was successfully updated." }
