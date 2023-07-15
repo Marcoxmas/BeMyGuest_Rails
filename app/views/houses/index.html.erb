@@ -10,15 +10,18 @@
             
           <%= image_tag(house.photos.first, class: "card-img-top immagine-card") %>
             <div class="card-body">
-            <h5 class="card-title">La casa di <%= house.user_id %></h5>
+            <h5 class="card-title">La casa di <%= User.find(house.user_id).name %></h5>
             <p class="card-text"><%= house.citta%> </p>
             <% if current_user == house.user || (current_user.user_type == 'admin' && current_user != house.user) %>
               <%= link_to "Modifica", edit_house_path(house), class: "btn login-button margine-10" %>
-              <%= button_to 'Elimina casa', house, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "btn btn-danger mx-1" %>
+              
             <% end %>
             <% if current_user.user_type == 'admin' && current_user != house.user %>
-              <%= button_to 'Elimina come admin', house, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "btn btn-danger mx-1" %>
+              <%= button_to 'Elimina come admin', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
+            <% elsif current_user.user_type != 'admin' && current_user == house.user%>
+              <%= button_to 'Elimina casa', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
             <% end %>
+
             <%= link_to "Mostra questa casa", house, class: "btn login-button margine-10" %>
             </div>
           </div>
