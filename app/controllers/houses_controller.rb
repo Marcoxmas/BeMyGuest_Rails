@@ -100,10 +100,12 @@ class HousesController < ApplicationController
   end
 
   def authorize_admin
-    user = User.find(params[:user_id])
-    #a meno che non è il current user non voglio che utenti visualizzino la lista completa delle case altrui
-    unless current_user == user || current_user.user_type == 'admin'
-      redirect_to root_path, alert: "Non hai i permessi per visualizzare questa pagina"
+    if (params[:user_id] != nil)
+      user = User.find(params[:user_id])
+      #a meno che non è il current user non voglio che utenti visualizzino la lista completa delle case altrui
+      unless current_user == user || current_user.user_type == 'admin'
+        redirect_to root_path, alert: "Non hai i permessi per visualizzare questa pagina"
+      end
     end
   end
   

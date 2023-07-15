@@ -2,13 +2,11 @@
 
 <%= render @house %>
 
-<div>
-  <%= link_to "Edit this house", edit_house_path(@house) %> |
-  <%= link_to "Back to houses", houses_path %>
-  <div>
-    send a new mail message
-    <%= link_to 'invia', new_email_message_path(user_id: @house.user_id) %>
+<div class="container container-form">
+  <div class="container container-form">
+    <%= link_to "Ritorna all'homepage", root_path, class: "btn login-button" %>
+    <% if current_user != @house.user %>
+      <%= link_to "Contatta l'host", new_email_message_path(user_id: @house.user_id), class: "btn login-button" %>
+    <% end %>
   </div>
-
-  <%= button_to "Destroy this house", @house, method: :delete %>
 </div>

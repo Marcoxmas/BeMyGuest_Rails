@@ -78,7 +78,7 @@
                   
                   <div class="input-number-container col-sm-4">
                     <div class="input-number">
-                      <%= f.number_field :numero_camere, class: "form-control", style: "display: none;", value: 1, required: true, min: 1, id: "formnumerocamere", name: "n_camere" %>
+                      <%= f.number_field :n_camere, class: "form-control", style: "display: none;", value: 1, required: true, min: 1, id: "formnumerocamere"%>
                       <button type="button" class="input-number-btn" id="bottonedecrementacamere" onclick="decrementa('numerocamere', 'formnumerocamere')">−</button>
                       <span class="input-number-value" id="numerocamere">1</span>
                       <button type="button" class="input-number-btn" id="bottoneincrementacamere" onclick="incrementa('numerocamere', 'formnumerocamere')">+</button>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="input-number-container col-sm-4">
                             <div class="input-number">
-                            <%= f.number_field :form_numero_bagni, class: "form-control", style: "display: none;", value: 1, required: true, min: 1, id: "form-numero-bagni", name: "n_bagni" %>
+                            <%= f.number_field :n_bagni, class: "form-control", style: "display: none;", value: 1, required: true, min: 1, id: "form-numero-bagni" %>
                             <button type="button" class="input-number-btn" id="bottone-dec-bagni" onclick="decrementa('numero-bagni', 'form-numero-bagni')">−</button>
                             <span class="input-number-value" id="numero-bagni">1</span>
                             <button type="button" class="input-number-btn" id="bottone-inc-bagni" onclick="incrementa('numero-bagni', 'form-numero-bagni')">+</button>                            
@@ -108,7 +108,7 @@
                         </div>
                         <div class="input-number-container col-sm-4">
                             <div class="input-number">
-                            <%= f.number_field :form_numero_cucine, class: "form-control", style: "display: none;", value: 1, required: true, min: 1, id: "form-numero-cucine", name: "n_cucine" %>
+                            <%= f.number_field :n_cucine, class: "form-control", style: "display: none;", value: 1, required: true, min: 1, id: "form-numero-cucine" %>
                             <button type="button" class="input-number-btn" id="bottone-dec-cucine" onclick="decrementa('numero-cucine', 'form-numero-cucine')">−</button>
                             <span class="input-number-value" id="numero-cucine">1</span>
                             <button type="button" class="input-number-btn" id="bottone-inc-cucine" onclick="incrementa('numero-cucine', 'form-numero-cucine')">+</button>                            
@@ -122,7 +122,7 @@
                         </div>
                         <div class="input-number-container col-sm-4">
                             <div class="input-number">
-                            <%= f.number_field :form_numero_soggiorni, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-soggiorni", name: "n_soggiorni" %>
+                            <%= f.number_field :n_soggiorni, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-soggiorni" %>
                             <button type="button" class="input-number-btn" id="bottone-dec-soggiorni" onclick="decrementa('numero-soggiorni', 'form-numero-soggiorni')">−</button>
                             <span class="input-number-value" id="numero-soggiorni">0</span>
                             <button type="button" class="input-number-btn" id="bottone-inc-soggiorni" onclick="incrementa('numero-soggiorni', 'form-numero-soggiorni')">+</button>                            
@@ -139,7 +139,7 @@
                         </div>
                         <div class="input-number-container col-sm-4">
                             <div class="input-number">
-                            <%= f.number_field :form_numero_lettosingolo, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-lettosingolo", name: "n_singoli" %>
+                            <%= f.number_field :n_singoli, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-lettosingolo"%>
                             <button type="button" class="input-number-btn" id="bottone-dec-lettosingolo" onclick="decrementa('numero-lettosingolo', 'form-numero-lettosingolo')">−</button>
                             <span class="input-number-value" id="numero-lettosingolo">0</span>
                             <button type="button" class="input-number-btn" id="bottone-inc-lettosingolo" onclick="incrementa('numero-lettosingolo', 'form-numero-lettosingolo')">+</button>
@@ -154,7 +154,7 @@
                         </div>
                         <div class="input-number-container col-sm-4">
                             <div class="input-number">
-                            <%= f.number_field :form_numero_lettomatrimoniale, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-lettomatrimoniale", name: "n_doppi" %>
+                            <%= f.number_field :n_doppi, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-lettomatrimoniale" %>
                             <button type="button" class="input-number-btn" id="bottone-dec-lettomatrimoniale" onclick="decrementa('numero-lettomatrimoniale', 'form-numero-lettomatrimoniale')">−</button>
                             <span class="input-number-value" id="numero-lettomatrimoniale">0</span>
                             <button type="button" class="input-number-btn" id="bottone-inc-lettomatrimoniale" onclick="incrementa('numero-lettomatrimoniale', 'form-numero-lettomatrimoniale')">+</button>                            
@@ -168,7 +168,7 @@
                         </div>
                         <div class="input-number-container col-sm-4">
                             <div class="input-number">
-                            <%= f.number_field :form_numero_culla, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-culla", name: "n_culle" %>
+                            <%= f.number_field :n_culle, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-culla"%>
                             <button type="button" class="input-number-btn" id="bottone-dec-culla" onclick="decrementa('numero-culla', 'form-numero-culla')">−</button>
                             <span class="input-number-value" id="numero-culla">0</span>
                             <button type="button" class="input-number-btn" id="bottone-inc-culla" onclick="incrementa('numero-culla', 'form-numero-culla')">+</button>
@@ -183,7 +183,7 @@
                         </div>
                         <div class="input-number-container col-sm-4">
                             <div class="input-number">
-                            <%= f.number_field :form_numero_sofa, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-sofa", name: "n_divani" %>
+                            <%= f.number_field :n_divani, class: "form-control", style: "display: none;", value: 0, required: true, min: 0, id: "form-numero-sofa" %>
                             <button type="button" class="input-number-btn" id="bottone-dec-sofa" onclick="decrementa('numero-sofa', 'form-numero-sofa')">−</button>
                             <span class="input-number-value" id="numero-sofa">0</span>
                             <button type="button" class="input-number-btn" id="bottone-inc-sofa" onclick="incrementa('numero-sofa', 'form-numero-sofa')">+</button>
