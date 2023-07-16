@@ -16,16 +16,14 @@
                 <div id="pac-container">
                     <%= f.search_field :address, name: nil, class: 'form-control pac-target-input', data: {target:"maps.field", action: "keydown->maps#keydown"} %>
                 </div>
-                <div>
+                <div style="display: none;">
                   <%= f.label :place_id %>
                   <%= f.text_field :place_id, data: {target: "maps.placeidd"}, readonly:true %>
-                </div>
-                <div>
-                  <%= f.label :citta, style:"display:block" %>
+                
+                  <%= f.label :citta%>
                   <%= f.text_field :citta, data: {target: "maps.latitude"}, readonly:true %>
-                </div>
-                <div>
-                  <%= f.label :nazione, style:"display:block" %>
+                
+                  <%= f.label :nazione %>
                   <%= f.text_field :nazione, data: {target: "maps.longitude"}, readonly:true %>
                 </div>
             </div>
