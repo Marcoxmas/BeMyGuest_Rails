@@ -1,0 +1,23 @@
+<html>
+<head><%= image_tag attachments["logo3.png"].url, class:"logo" %>
+<style>.logo {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 45px;
+}</style></head>
+<body>
+<h1>Ciao <%= @name_dest%>!</h1>
+<br> 
+<h2>Hai una nuova richiesta di contatto per la tua casa di <%= @hou.citta %>, <%= @hou.nazione %> 
+a disposizione dal <%= @hou.data_in %> al <%= @hou.data_out %><br><u>
+                
+<%= @user.name%></u> sarebbe interessato a contattarti<br>
+<a href='mailto:<%= @user.email %>'>Clicca qui per scivere a <%= @user.name%></a><br></h2><br>
+
+<div>
+<h3>Cordialmente<br>il Team di BeMyGuest Italy</h3>
+<br> questa è una mail autogenerata, non rispondere a questo indirizzo
+</div>
+</body>
+</html>

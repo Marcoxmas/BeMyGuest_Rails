@@ -5,6 +5,11 @@
 </a>
     </div>
     <div class="row">
+        <% if @houses.size == 0 %>
+          <div class="notice">
+            <h2>Siamo spiacenti<br>Non sono presenti case disponibili</h2>
+          </div>
+        <% end %>
         <% @houses.each do |house| %>
           <div class="card" style="width: 18rem;">
             
@@ -12,7 +17,7 @@
             <div class="card-body">
             <h5 class="card-title">La casa di <%= User.find(house.user_id).name %></h5>
             <p class="card-text"><%= house.citta%> </p>
-            <% if current_user == house.user || current_user.user_type == 'admin' %>
+            <% if current_user == house.user %>
               <%= link_to "Modifica", edit_house_path(house), class: "btn login-button margine-10" %>
             <% end %>
             <% if current_user.user_type == 'admin' && current_user != house.user %>
