@@ -1,11 +1,23 @@
 <html>
-<head><%= image_tag attachments["logo3.png"].url, class:"logo" %>
-<style>.logo {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    height: 45px;
-}</style></head>
+<head>
+<style>
+    .logo {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 45px;
+    }
+    @media only screen and (max-width: 400px) {
+        .logo {
+            background-repeat: no-repeat;
+            background-position: 50%;
+            height: 35px;
+        }
+    }
+
+</style>
+<%= image_tag attachments["logo3.png"].url, class:"logo" %>
+</head>
 <body>
 <h1>Ciao <%= @name_dest%>!</h1>
 <br> 
