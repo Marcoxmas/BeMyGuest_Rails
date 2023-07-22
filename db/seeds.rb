@@ -26,4 +26,4 @@ services = [
     user_type: "admin"
   )
   
-  puts "Admin user created successfully."
+  puts "Admin user created successfully BUT NOT CONFIRMABLE (non è possibile utilizzarlo)."
