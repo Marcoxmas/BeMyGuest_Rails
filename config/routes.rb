@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   #post 'send_email', to: 'email_messages#create'
 
   get 'users/:id/toggle_user_type' => "users#toggle_user_type", as: :toggle_user_type
+  get 'users/:id/report_and_delete' => "users#report_and_delete", as: :report_and_delete
+
 end

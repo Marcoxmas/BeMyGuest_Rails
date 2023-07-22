@@ -19,7 +19,12 @@
         <td><%= user.user_type %></td>
         <td>
           <% unless user == current_user %>
-            <%= link_to 'Toggle User Type', toggle_user_type_path(user), method: :patch, class: 'btn btn-primary' %>
+            <%= link_to 'Toggle User Type', toggle_user_type_path(user), method: :patch, class: 'btn btn-primary red' %>
+          <% end %>
+        </td>
+        <td>
+          <% unless user == current_user || user.user_type == 'admin' %>
+            <%= link_to 'Report & Delete', report_and_delete_path(user), method: :delete, class: 'btn btn-primary red' %>
           <% end %>
         </td>
         <td>

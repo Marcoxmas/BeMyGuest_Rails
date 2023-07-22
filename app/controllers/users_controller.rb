@@ -11,6 +11,27 @@ class UsersController < ApplicationController
       redirect_to users_path, notice: 'User type toggled successfully.'
     end
 
+    def report_and_delete
+      @user = User.find(params[:id])
+
+      dest = @user.email
+      @dest_name = @user.name
+
+      #report email
+      email_message = EmailMessage.new
+      email_message.dest = dest
+      email_message.subject = "BeMyGuest: Your Account has been Deleted"
+      if EmailMailer.with(name: @dest_name).send_email_report(email_message).deliver_now! 
+        @user.destroy
+        redirect_to users_path, notice: 'User account has been Reported and Deleted from the system'
+      else
+        redirect_to users_path, notice: 'Account  Not Deleted from the system'
+      end
+      
+
+      
+    end
+
     private
     def authorize_admin
       unless current_user.user_type == 'admin'

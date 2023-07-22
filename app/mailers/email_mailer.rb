@@ -25,4 +25,15 @@ class EmailMailer < ApplicationMailer
         attachments.inline['logo3.png'] = File.read('app/assets/images/loghi/logo3.png')
         mail(to: dest, subject: subject, reply_to: 'BeMyGuest')
     end
+
+    def send_email_report(email_message)
+
+        @name = params[:name]
+        #sender = email_message.sender
+        dest = email_message.dest
+        subject = email_message.subject
+        #body = email_message.body
+        attachments.inline['logo3.png'] = File.read('app/assets/images/loghi/logo3.png')
+        mail(to: dest, subject: subject, reply_to: 'BeMyGuest')
+    end
 end
