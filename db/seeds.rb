@@ -18,12 +18,12 @@ services = [
     Service.find_or_create_by(nome: service)
   end
 
-  User.create(
-    name: "admin",
+  User.create!(
+    name: "Admin User",
     email: "admin@prova.it",
     password: "asd",
-    password_confirmation: "asd",
-    user_type: "admin"
+    user_type: "admin",
+    confirmed_at: Time.now # Imposta il campo confirmed_at con l'istante corrente
   )
   
-  puts "Admin user created successfully BUT NOT CONFIRMABLE (non è possibile utilizzarlo)."
+  puts "Admin user created successfully."
