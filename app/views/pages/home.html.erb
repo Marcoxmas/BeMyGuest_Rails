@@ -32,8 +32,15 @@
         <div class="login-button-container" id="bottone-login">
             <% if user_signed_in? %>
             
-            <button class="btn login-button margine-10">
+            <%
+=begin%>
+ <button class="btn login-button margine-10">
             <%= link_to "Visualizza le tue case", houses_path(user_id: current_user.id), class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+            </button> 
+<%
+=end%>
+            <button class="btn login-button margine-10">
+            <%= link_to "Visualizza il tuo profilo", user_path(current_user), class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
             </button>
 
             

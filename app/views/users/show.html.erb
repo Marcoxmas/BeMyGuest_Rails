@@ -1,0 +1,44 @@
+<div class="container" style="min-height: 0;">
+<%= link_to(image_tag("loghi/logo 3.png", class:"form-casa-immagine"), root_path) %>
+</div>
+<% if @user == current_user %>
+<h2 class= "titolo-bello"> Il tuo profilo </h2>
+<%else%>
+<h2 class="titolo-bello">Profilo di <%= @user.name %></h4>
+<%end%>
+
+<p><h4>Nome:</h4> <%= @user.name %></p>
+<p><h4>Email:</h4> <%= @user.email %></p>
+
+<% if @user == current_user %>
+<h2 class= "titolo-bello"> Le tue case </h2>
+<%else%>
+<h2 class="titolo-bello">Le case di <%= @user.name %></h4>
+<%end%>
+
+    <div class="row">
+        <% @houses.each do |house| %>
+          <div class="card" style="width: 18rem;">
+            
+          <%= image_tag(house.photos.first, class: "card-img-top immagine-card") %>
+            <div class="card-body">
+            <h5 class="card-title">La casa di <%= User.find(house.user_id).name %></h5>
+            <p class="card-text"><%= house.citta%> </p>
+            <% if current_user == house.user %>
+              <%= link_to "Modifica", edit_house_path(house), class: "btn login-button margine-10" %>
+            <% end %>
+            <% if current_user.user_type == 'admin' && current_user != house.user %>
+              <%= button_to 'Elimina come admin', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
+            <% elsif current_user == house.user%>
+              <%= button_to 'Elimina casa', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
+            <% end %>
+
+            <%= link_to "Mostra questa casa", house, class: "btn login-button margine-10" %>
+            </div>
+          </div>
+        <% end %>
+
+    </div>
+<div class="container">
+<%= button_to 'Elimina Profilo', user_path(@user), method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare il tuo profilo?' } }, class: "btn btn-danger" %>
+</div>

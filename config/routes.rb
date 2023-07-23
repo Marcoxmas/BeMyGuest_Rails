@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root "pages#home"
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show, :destroy]
 
   #routes per mail controller
   resources :email_messages, only: [:new, :create]

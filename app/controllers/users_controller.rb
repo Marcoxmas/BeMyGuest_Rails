@@ -5,6 +5,17 @@ class UsersController < ApplicationController
       @users = User.all
     end
 
+    def show
+      @user = User.find(params[:id])
+      @houses = @user.houses
+    end
+    
+    def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to root_path, notice: "Your profile has been deleted."
+    end
+
     def toggle_user_type
       @user = User.find(params[:id])
       @user.update(user_type: (@user.user_type == 'regular_user') ? 'admin' : 'regular_user')
