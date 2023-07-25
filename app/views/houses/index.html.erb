@@ -3,6 +3,28 @@
 <a href="">
 <%= link_to(image_tag("loghi/logo 3.png", class:"step-immagine login-immagine"), root_path) %>
 </a>
+<%= form_with(url: houses_path, method: :get) do |form| %>
+  <div class="row">
+    <div class="col">
+      <%= form.label :data_in, "Data In" %>
+      <%= form.date_field :data_in %>
+    </div>
+    <div class="col">
+      <%= form.label :data_out, "Data Out" %>
+      <%= form.date_field :data_out %>
+    </div>
+    <div class="col">
+      <%= form.submit "Cerca", class: "btn btn-primary" %>
+    </div>
+    <%= hidden_field_tag :citta, params[:citta] %>
+    <%= hidden_field_tag :nazione, params[:nazione] %>
+  </div>
+<% end %>
+<% if @error_message.present? %>
+  <div class="alert alert-danger">
+    <%= @error_message %>
+  </div>
+<% end %>
     </div>
     <div class="row">
         <% if @houses.size == 0 %>
