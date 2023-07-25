@@ -6,7 +6,7 @@
   <div class="container container-form">
     <%= link_to "Ritorna all'homepage", root_path, class: "btn login-button" %>
     <% if current_user != @house.user %>
-      <%= link_to "Contatta l'host", new_email_message_path(user_id: @house.user_id, house: @house.id), class: "btn login-button green" %>
+      <%= link_to "Contatta l'host", contact_host_path(user_id: @house.user_id, house: @house.id), class: "btn login-button green" %>
     <% end %>
   </div>
 </div>

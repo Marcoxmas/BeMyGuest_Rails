@@ -1,0 +1,28 @@
+<!-- app/views/users/index.html.erb -->
+<%= link_to(image_tag("loghi/logo 3.png", class:"step-immagine login-immagine"), root_path) %>
+
+<h1>Customer Service</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Subject</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @email_messages.each do |email_message| %>
+      <tr>
+        <td><%= email_message.sender %></td>
+        <td><%= email_message.subject %></td>
+        <td><%= email_message.body %></td>
+        <td>
+            <%= link_to 'Elimina', email_message_path(email_message.id), data: { turbo_confirm: 'Sei sicuro di voler eliminare questo messaggio?' }, class: 'btn btn-primary red' %>
+        </td>
+    
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

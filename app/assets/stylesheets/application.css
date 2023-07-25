@@ -24,6 +24,9 @@
 .red{
     background-color: red;
 }
+.lightBlue{
+    background-color: lightskyblue;
+}
 
 .hidden {
     visibility: hidden;

@@ -1,0 +1,36 @@
+<html>
+<head>
+<style>
+    .red {
+        color: red;
+    }
+    .logo {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 45px;
+    }
+    @media only screen and (max-width: 400px) {
+        .logo {
+            background-repeat: no-repeat;
+            background-position: 50%;
+            height: 35px;
+        }
+    }
+
+</style>
+<%= image_tag attachments["logo3.png"].url, class:"logo" %>
+</head>
+<body>
+<h1>Ciao <%= @name%>!</h1>
+<br> 
+<h2> 
+<u class="red"> La tua casa di <%= @hou.citta %>, <%= @hou.nazione %> 
+a disposizione dal <%= @hou.data_in %> al <%= @hou.data_out %> è stata Eliminata dai nostri sistemi       
+</u><br><h3>Se non riconosci questa attività puoi contattare il servizio clienti
+</h3><br><div>
+<h3>Cordialmente<br>il Team di BeMyGuest Italy</h3>
+<br> questa è una mail autogenerata, non rispondere a questo indirizzo
+</div>
+</body>
+</html>

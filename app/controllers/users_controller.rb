@@ -39,8 +39,6 @@ class UsersController < ApplicationController
         redirect_to users_path, notice: 'Account  Not Deleted from the system'
       end
       
-
-      
     end
 
     private

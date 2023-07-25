@@ -1,7 +1,8 @@
 class EmailMessagesController < ApplicationController
     before_action :authenticate_user!
+    before_action :authorize_admin, only: [:index, :destroy]
 
-    def new
+    def contact_host
         email_message = EmailMessage.new
         id = params[:user_id]
         usr_ds = User.select(:email, :name).find_by(id: id)
@@ -42,11 +43,40 @@ class EmailMessagesController < ApplicationController
 
         end
     end
+    def new
+        @email_message = EmailMessage.new
+    end
 
     def create
-        email_params = params.require(:email_message).permit(:sender, :dest, :subject, :body)
-        email_params[:sender] = "trial.shopify1@gmail.com"
-        EmailMailer.send_email(email_params).deliver_later
-        redirect_to root_path, notice: "L'Host è stato contattato"
+        email_params = params.require(:email_message).permit(:subject, :body)
+        @email_message = EmailMessage.new(email_params)
+        @email_message.sender = current_user.email
+        #EmailMailer.send_email(email_params).deliver_later
+        if @email_message.save
+            redirect_to user_path(current_user.id), notice: "Il messaggio è stato inviato al Servizio Clienti"
+        else
+            puts @email_message.errors.inspect
+            redirect_to user_path(current_user.id), notice: "Errore nell'invio del messaggio"
+        end
+    end
+
+    def index 
+        @email_messages = EmailMessage.all
+    end
+
+    def destroy
+        @email_message = EmailMessage.find(params[:id])
+        @email_message.destroy
+        respond_to do |format|
+            format.html { redirect_back(fallback_location: root_path, notice: "Messaggio assistenza chiuso con successo.") }
+            format.json { head :no_content }
+          end    
+    end
+
+    private
+    def authorize_admin
+      unless current_user.user_type == 'admin'
+        redirect_to root_path, alert: "You are not authorized to access this page."
+      end
     end
 end

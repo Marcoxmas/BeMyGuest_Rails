@@ -15,13 +15,15 @@ Rails.application.routes.draw do
   root "pages#home"
   resources :users, only: [:index, :show, :destroy]
 
-  #routes per mail controller
-  resources :email_messages, only: [:new, :create]
+  #routes per mail controller contatta admin
+  resources :email_messages, only: [:new, :create, :index, :destroy]
   #se voglio usare altra vista es. views/emails/send_email.html.erb
   #get 'send_email', to: 'email_messages#new'
   #post 'send_email', to: 'email_messages#create'
 
   get 'users/:id/toggle_user_type' => "users#toggle_user_type", as: :toggle_user_type
   get 'users/:id/report_and_delete' => "users#report_and_delete", as: :report_and_delete
+
+  get 'email_messages/contact_host' => "email_messages#contact_host", as: :contact_host
 
 end

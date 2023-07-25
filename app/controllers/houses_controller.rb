@@ -75,12 +75,26 @@ class HousesController < ApplicationController
 
   # DELETE /houses/1 or /houses/1.json
   def destroy
-    @house.destroy
-
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path, notice: "House was successfully destroyed.") }
-      format.json { head :no_content }
+    user = User.find(@house.user_id)
+    mail_dest = user.email
+    email_message = EmailMessage.new
+    email_message.dest = mail_dest
+    email_message.subject = "BeMyGuest: House Deleted"
+    if EmailMailer.with(name: user.name, hou: @house).send_email_del_house(email_message).deliver_now!
+          @house.destroy
+          respond_to do |format|
+            format.html { redirect_back(fallback_location: root_path, notice: "House was successfully deleted.") }
+            format.json { head :no_content }
+          end
+    else
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path, notice: "Cannot delete this house.") }
+        format.json { head :no_content }
+      end
     end
+
+
+    
   end
 
   private

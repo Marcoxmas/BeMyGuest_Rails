@@ -48,8 +48,13 @@
             <%= link_to "Aggiungi la tua casa", new_house_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
             </button>
             <%if current_user.user_type == "admin"%>
-                <button class="btn login-button margine-10">
-                <%= link_to "Lista Utenti", users_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+                <button class="btn login-button margine-10 lightBlue">
+                <%= link_to "Area Amministratore", users_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
+                </button>
+            <%end%>
+            <%if current_user.user_type == "admin"%>
+                <button class="btn login-button margine-10 lightBlue">
+                <%= link_to "Area Servizio Clienti", email_messages_path, class:"link-light link-underline-opacity-100-hover link-underline-opacity-0" %>
                 </button>
             <%end%>
 

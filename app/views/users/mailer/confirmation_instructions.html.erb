@@ -1,5 +1,6 @@
-<p>Welcome <%= @email %>!</p>
+ <%= image_tag("loghi/logo 3.png", class:"form-casa-immagine") %>
+<h2>Ciao <%= @email %> !</h2>
 
-<p>You can confirm your account email through the link below:</p>
+<h3>Per utilizzare il tuo account BeMyGuest e godere di tutti i servizi, conferma il tuo indirizzo email:</h3>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<button style="background-color: green;"><h2><%= link_to 'Conferma Email', confirmation_url(@resource, confirmation_token: @token) %></h2></button>
