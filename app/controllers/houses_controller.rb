@@ -20,6 +20,16 @@ class HousesController < ApplicationController
         base = base.where("nazione = :nazione", { nazione: na })
       end
     end
+    if (params[:data_in].present?)
+      base = base.where("data_in >= ?", params[:data_in])
+    end
+    if (params[:data_out].present?)
+      base = base.where("data_out <= ?", params[:data_out])
+    end
+    if params[:data_in].present? && params[:data_out].present? && Date.parse(params[:data_out]) < Date.parse(params[:data_in])
+      @error_message = "La data di check-out non può essere antecedente alla data di check-in."
+      return redirect_to houses_path, alert: @error_message, status: :bad_request
+    end
     if (params[:user_id] != nil)
       u = params[:user_id]
       base = base.where("user_id = :user", {user: u})
