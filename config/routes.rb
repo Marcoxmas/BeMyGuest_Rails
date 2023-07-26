@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :destroy]
 
   #routes per mail controller contatta admin
-  resources :email_messages, only: [:new, :create, :index, :destroy]
+  resources :email_messages, only: [:index, :new, :create, :destroy]
   #se voglio usare altra vista es. views/emails/send_email.html.erb
   #get 'send_email', to: 'email_messages#new'
   #post 'send_email', to: 'email_messages#create'

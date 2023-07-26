@@ -17,8 +17,9 @@
         <td><%= email_message.sender %></td>
         <td><%= email_message.subject %></td>
         <td><%= email_message.body %></td>
+        <td><%= email_message.created_at %></td>
         <td>
-            <%= link_to 'Elimina', email_message_path(email_message.id), data: { turbo_confirm: 'Sei sicuro di voler eliminare questo messaggio?' }, class: 'btn btn-primary red' %>
+            <%= link_to 'Chiudi', email_message_path(email_message), method: :delete, data: { turbo_confirm: 'Sei sicuro di voler eliminare questo messaggio?' }, class: 'btn btn-primary red' %>
         </td>
     
       </tr>
