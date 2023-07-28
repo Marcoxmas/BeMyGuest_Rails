@@ -46,4 +46,12 @@ class EmailMailer < ApplicationMailer
         mail(to: dest, subject: subject, reply_to: 'BeMyGuest')
 
     end
+
+    def send_conf_sign_up(email_message)
+        @name = params[:name]
+        dest = email_message.dest
+        subject = email_message.subject
+        attachments.inline['logo3.png'] = File.read('app/assets/images/loghi/logo3.png')
+        mail(to: dest, subject: subject, reply_to: 'BeMyGuest')
+    end
 end

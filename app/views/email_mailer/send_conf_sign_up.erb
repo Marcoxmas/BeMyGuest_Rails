@@ -1,0 +1,34 @@
+<html>
+<head>
+<style>
+    .logo {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 45px;
+    }
+    @media only screen and (max-width: 400px) {
+        .logo {
+            background-repeat: no-repeat;
+            background-position: 50%;
+            height: 35px;
+        }
+    }
+
+</style>
+<%= image_tag attachments["logo3.png"].url, class:"logo" %>
+</head>
+<body>
+<h1>Ciao <%= @name%>!</h1>
+<br> 
+<h2>Benvenuto su BeMyGuest<br>
+                
+<br>
+<br>Grazie per la tua iscrizione,<br> scopri subito tutte le possibilità di scambio casa, e connettiti con gli altri utent! :)</h2><br>
+
+<div>
+<h3>Cordialmente<br>il Team di BeMyGuest Italy</h3>
+<br> questa è una mail autogenerata, non rispondere a questo indirizzo
+</div>
+</body>
+</html>
