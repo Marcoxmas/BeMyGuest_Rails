@@ -45,7 +45,7 @@ class EmailMessagesController < ApplicationController
         @email_message = EmailMessage.find(params[:id])
         @email_message.destroy
         
-        redirect_back(fallback_location: root_path, notice: "Messaggio assistenza chiuso con successo.") 
+        redirect_to email_messages_path, notice: "Messaggio assistenza chiuso con successo."
       
     end
 

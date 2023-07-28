@@ -9,6 +9,7 @@
       <th>Customer</th>
       <th>Subject</th>
       <th>Message</th>
+      <th>Date</th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +20,7 @@
         <td><%= email_message.body %></td>
         <td><%= email_message.created_at %></td>
         <td>
-            <%= link_to 'Chiudi', email_message_path(email_message), method: :delete, data: { turbo_confirm: 'Sei sicuro di voler eliminare questo messaggio?' }, class: 'btn btn-primary red' %>
+            <%= link_to 'Chiudi', email_message_path(email_message), data: { turbo_method: :delete, turbo_confirm: 'Sei sicuro di voler eliminare questo messaggio?' }, class: 'btn btn-primary red' %>
         </td>
     
       </tr>

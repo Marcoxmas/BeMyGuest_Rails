@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'users/:id/toggle_user_type' => "users#toggle_user_type", as: :toggle_user_type
   get 'users/:id/report_and_delete' => "users#report_and_delete", as: :report_and_delete
 
+  #delete 'email_messages/:id', to: 'email_messages#destroy'
+
   get 'email_messages/contact_host' => "email_messages#contact_host", as: :contact_host
 
 end
