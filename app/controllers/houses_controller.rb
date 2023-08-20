@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :authenticate_user!, only: :show
+  before_action :authenticate_user!
   before_action :authorize_user, only: :show
   before_action :authorize_admin, only: :index
   before_action :set_house, only: %i[ show edit update destroy ]
