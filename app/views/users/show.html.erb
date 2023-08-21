@@ -28,9 +28,9 @@
               <%= link_to "Modifica", edit_house_path(house), class: "btn login-button margine-10" %>
             <% end %>
             <% if current_user.user_type == 'admin' && current_user != house.user %>
-              <%= button_to 'Elimina come admin', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
+              <%= button_to 'Elimina come admin', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger", "data-house-id" => house.id   %>
             <% elsif current_user == house.user%>
-              <%= button_to 'Elimina casa', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger" %>
+              <%= button_to 'Elimina casa', house, method: :delete, form: { data: { turbo_confirm: 'Sei sicuro di voler eliminare questa casa?' } }, class: "btn btn-danger"%>
             <% end %>
 
             <%= link_to "Mostra questa casa", house, class: "btn login-button margine-10" %>
